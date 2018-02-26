@@ -14,4 +14,5 @@ import java.util.Map;
 public interface Stats {
     public Map<String, Integer> getStats();
     public void rollStats();
+    public int getStat(String stat);
 }

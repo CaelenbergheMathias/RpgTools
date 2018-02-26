@@ -59,4 +59,10 @@ public class DnDStats implements Stats{
         
     }
     
+    @Override
+    public int getStat(String stat)
+    {
+        return stats.get(stat);
+    }
+    
 }
