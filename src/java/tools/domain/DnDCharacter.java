@@ -5,6 +5,9 @@
  */
 package tools.domain;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,12 +17,19 @@ import java.util.Map;
 public class DnDCharacter {
     private String name;
     private Stats stats;
+    private DnDRace race;
+    private DnDRace subRace;
+    private DnDClass startingClass;
+    private List<DnDClass> multiClass;
     
-    public DnDCharacter(String name, String race, String playerClass,  Map<String,Integer> stats)
+    public DnDCharacter(String name, DnDRace race, DnDRace subRace, DnDClass playerClass)
     {
         this.name = name;
-        this.stats = new DnDStats(stats);
-        this.stats.rollStats();
+        this.stats = new DnDStats();
+        this.race = race;
+        this.subRace = subRace;
+        this.startingClass = playerClass;
+        this.multiClass = new ArrayList<>();
     }
     
     public int getStatValue(String stat)
@@ -29,6 +39,15 @@ public class DnDCharacter {
     
     public Map<String, Integer> getAllStats()
     {
-        return stats.getStats();
+        Map<String, Integer> totalStats = stats.getStats();
+        
+        race.getStatBonus().entrySet().forEach((pair) -> {
+            totalStats.put(name, totalStats.get(pair.getKey())+pair.getValue());
+        });
+        
+        subRace.getStatBonus().entrySet().forEach((pair) -> {
+            totalStats.put(name, totalStats.get(pair.getKey())+pair.getValue());
+        });
+        return totalStats;
     }
 }

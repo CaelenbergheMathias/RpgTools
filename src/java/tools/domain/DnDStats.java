@@ -7,6 +7,7 @@ package tools.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -19,9 +20,16 @@ public class DnDStats implements Stats{
     private Map<String, Integer> stats;
     private Random rand = new Random();
         
-    public DnDStats(Map<String, Integer> stats)
+    public DnDStats()
     {
-        this.stats = stats;
+        Map <String, Integer> things = new LinkedHashMap<>();
+        things.put("STR",0);
+        things.put("DEX", 0);
+        things.put("CON",0);
+        things.put("INT", 0);
+        things.put("WIS", 0);
+        things.put("CHA",0);
+        this.stats = things;
         rollStats();
     }
     
