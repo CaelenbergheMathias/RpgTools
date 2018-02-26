@@ -33,7 +33,7 @@ public class DnDStats implements Stats{
     @Override
     public void rollStats() {
         stats.entrySet().forEach((pair) -> {
-            int stat = rollDies();
+            int stat = rollDice();
             stats.replace(pair.getKey(), stat);
         });
 
@@ -44,7 +44,7 @@ public class DnDStats implements Stats{
         return rand.nextInt(5)+1;
     }
     
-    private int rollDies()
+    private int rollDice()
     {
         List<Integer> rolls = new ArrayList<>();
         for(int i = 0; i<4;i++)
