@@ -30,7 +30,7 @@ public class DnDStats implements Stats{
         things.put("WIS", 0);
         things.put("CHA",0);
         this.stats = things;
-        rollStats();
+        
     }
     
     @Override
@@ -45,6 +45,21 @@ public class DnDStats implements Stats{
             stats.replace(pair.getKey(), stat);
         });
 
+    }
+    
+    @Override
+    public int getStat(String stat)
+    {
+        return stats.get(stat);
+    }
+    
+    @Override
+    public void setStat(String stat, int value)
+    {
+        if(stats.containsKey(stat))
+        {
+            stats.put(stat, value);
+        }
     }
     
     private int rollDie()
@@ -66,11 +81,5 @@ public class DnDStats implements Stats{
         return rolls.get(0)+rolls.get(1)+rolls.get(2);
         
     }
-    
-    @Override
-    public int getStat(String stat)
-    {
-        return stats.get(stat);
-    }
-    
+      
 }

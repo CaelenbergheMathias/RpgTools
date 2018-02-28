@@ -17,66 +17,31 @@ class DnDRace {
     private Integer speed;
     private String size;
     private Map<String,Integer> statBonus;
-    private List<String> proficiencies;
-    private List<String> traits;
-    private List<String> languages;
-
+    private DnDTraits traits;
+    
+    public DnDRace(String name, Integer speed, Integer size, Map<String, Integer> statBonus, DnDTraits traits)
+    {
+        
+    }
+   
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getSpeed() {
         return speed;
     }
 
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
-    }
-
     public String getSize() {
         return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public Map<String,Integer> getStatBonus() {
         return statBonus;
     }
-
-    public void setStatBonus(Map<String,Integer> statBonus) {
-        this.statBonus = statBonus;
-    }
-
-    public List<String> getProficiencies() {
-        return proficiencies;
-    }
-
-    public void setProficiencies(List<String> proficiencies) {
-        this.proficiencies = proficiencies;
-    }
-
-    public List<String> getTraits() {
+    
+    public DnDTraits getTraits()
+    {
         return traits;
     }
-
-    public void setTraits(List<String> traits) {
-        this.traits = traits;
-    }
-
-    public List<String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
-    }
-    
-    
-    
 }

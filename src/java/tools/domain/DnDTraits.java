@@ -5,15 +5,14 @@
  */
 package tools.domain;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  *
  * @author Mathias
  */
-public interface Stats {
-    public Map<String, Integer> getStats();
-    public void rollStats();
-    public int getStat(String stat);
-    public void setStat(String stat, int value);
+class DnDTraits {
+    private List<String> languages;
+    private List<String> proficiencies;
+    private List<String> traits;
 }

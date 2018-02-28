@@ -50,16 +50,13 @@ public class DnDStatsTests {
     public void testStats()
     {
         DnDStats stats = new DnDStats();
-        for(int i = 0; i<10000; i++)
+        for(int i = 0; i<100000; i++)
         {
             stats.rollStats();
             stats.getStats().entrySet().forEach((pair) ->{
-                //System.out.println(pair.getKey()+" "+pair.getValue());
                 assertTrue(pair.getValue()>=3);
                 assertTrue(pair.getValue()<=18);
-                
             });
-            //System.out.println();
             
         }
     }

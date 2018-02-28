@@ -26,6 +26,7 @@ public class DnDCharacter {
     {
         this.name = name;
         this.stats = new DnDStats();
+        stats.rollStats();
         this.race = race;
         this.subRace = subRace;
         this.startingClass = playerClass;
@@ -35,6 +36,11 @@ public class DnDCharacter {
     public int getStatValue(String stat)
     {
         return stats.getStat(stat);
+    }
+    
+    public void setStatValue(String stat, int value)
+    {
+        stats.setStat(stat,value);
     }
     
     public Map<String, Integer> getAllStats()
