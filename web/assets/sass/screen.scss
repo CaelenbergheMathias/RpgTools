@@ -1,0 +1,35 @@
+$dndRed: #e50712;
+
+
+@font-face {
+  font-family: 'mael';
+  src: url('../fonts/mael.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+header {
+
+  h1 {
+    padding: 1rem;
+    background-color: $dndRed;
+    text-align: center;
+    font-size: 3.5rem;
+    letter-spacing: 1rem;
+    font-family: 'mael', serif;
+  }
+  nav{
+
+    li{
+      display: inline-block;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: $dndRed;
+      margin-bottom: 0.5rem;
+
+    }
+  }
+
+
+}
