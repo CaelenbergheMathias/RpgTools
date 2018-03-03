@@ -3,19 +3,71 @@
   src: url("../fonts/mael.woff2") format("woff2");
   font-weight: normal;
   font-style: normal; }
-header h1 {
+@media only screen and (max-width: 500px) {
+  ul {
+    flex-direction: column;
+    justify-content: space-evenly; }
+    ul li {
+      align-self: center;
+      margin-bottom: 3rem; } }
+header {
   padding: 1rem;
+  background-color: #e50712; }
+  header h1 {
+    text-align: center;
+    font-size: 3.5rem;
+    letter-spacing: 1rem;
+    font-family: 'mael', serif; }
+
+article {
   background-color: #e50712;
-  text-align: center;
-  font-size: 3.5rem;
-  letter-spacing: 1rem;
-  font-family: 'mael', serif; }
-header nav li {
-  display: inline-block;
-  text-align: center;
+  border-top: black;
+  border-style: ridge; }
+
+h2 {
+  margin-bottom: 0.4rem; }
+
+p {
+  margin-bottom: 0.2rem; }
+
+nav {
   margin-left: auto;
   margin-right: auto;
-  background-color: #e50712;
-  margin-bottom: 0.5rem; }
+  width: 50%;
+  padding: 1.60rem; }
+
+ul {
+  display: flex; }
+  @media only screen and (min-width: 500px) {
+    ul {
+      justify-content: space-evenly;
+      flex-direction: row; } }
+  ul li a {
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: #028ecc;
+    -webkit-transition: background-color 0.5s ease-in;
+    -moz-transition: background-color 0.5s ease-in;
+    -ms-transition: background-color 0.5s ease-in;
+    -o-transition: background-color 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+    font-family: 'Britannic Bold',  sans-serif; }
+  ul a:hover {
+    background-color: #d58512; }
+
+html {
+  height: 100%;
+  background-image: url("../media/dice-2351448.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+body {
+  height: 100vh;
+  background-color: rgba(25, 25, 25, 0.75); }
 
 /*# sourceMappingURL=screen.css.map */
