@@ -1,5 +1,6 @@
 $dndRed: #e50712;
-
+$backgroundwrapper: rgba(25, 25, 25, 0.75);
+$backgroundcollertranistion: background-color 0.5s ease-in;
 
 @font-face {
   font-family: 'mael';
@@ -8,28 +9,99 @@ $dndRed: #e50712;
   font-style: normal;
 }
 
-header {
+@media only screen and (max-width: 500px) {
+  ul{
+    flex-direction: column;
+    justify-content: space-evenly;
+    li{
+      align-self: center;
+      margin-bottom: 3rem;
+    }
+  }
+}
 
+header {
+  padding: 1rem;
+  background-color: $dndRed;
   h1 {
-    padding: 1rem;
-    background-color: $dndRed;
+
     text-align: center;
     font-size: 3.5rem;
     letter-spacing: 1rem;
     font-family: 'mael', serif;
   }
-  nav{
+}
 
-    li{
-      display: inline-block;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: $dndRed;
-      margin-bottom: 0.5rem;
+article
+{
+  background-color: $dndRed;
+  border-top: black;
+  border-style: ridge;
+}
 
-    }
+h2{
+  margin-bottom: 0.4rem;
+}
+
+p{
+  margin-bottom: 0.2rem;
+}
+
+nav{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 1.60rem;
+
+}
+
+ul{
+
+  display: flex;
+  @media only screen and (min-width: 500px) {
+    justify-content: space-evenly;
+    flex-direction: row;
   }
 
 
+  li{
+
+
+    a{
+      border-radius: 0.5rem;
+      text-align: center;
+      padding: 1rem 2rem;
+      background-color: #028ecc;
+      -webkit-transition: $backgroundcollertranistion;
+      -moz-transition: $backgroundcollertranistion;
+      -ms-transition: $backgroundcollertranistion;
+      -o-transition: $backgroundcollertranistion;
+      transition: $backgroundcollertranistion;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: black;
+      font-family: 'Britannic Bold',  sans-serif;
+
+
+    }
+
+  }
+  a:hover
+  {
+    background-color: #d58512;
+  }
 }
+
+html{
+  height: 100%;
+  background-image: url("../media/dice-2351448.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body{
+  height: 100vh;
+  background-color: $backgroundwrapper;
+}
+
