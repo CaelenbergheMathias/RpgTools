@@ -23,13 +23,11 @@ class DnDCharacter {
     rollStats() {
         let x;
         for (x in this.stats) {
-            let stat = this.rollDice();
-            this.stats[x] = stat;
+            this.stats[x] = this.rollDice();
         }
     }
 }
 $(document).ready(function () {
     let char = new DnDCharacter("john");
-    console.log(char.stats);
 });
 //# sourceMappingURL=script.js.map

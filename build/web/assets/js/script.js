@@ -24,13 +24,11 @@ var DnDCharacter = /** @class */ (function () {
     DnDCharacter.prototype.rollStats = function () {
         var x;
         for (x in this.stats) {
-            var stat = this.rollDice();
-            this.stats[x] = stat;
+            this.stats[x] = this.rollDice();
         }
     };
     return DnDCharacter;
 }());
 $(document).ready(function () {
     var char = new DnDCharacter("john");
-    console.log(char.stats);
 });

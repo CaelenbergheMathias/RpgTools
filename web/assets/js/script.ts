@@ -2,7 +2,7 @@
 
 class DnDCharacter{
     private name:string;
-    private stats:object;
+    private stats:any;
     public constructor(name:string)
     {
         this.name = name;
@@ -36,9 +36,7 @@ class DnDCharacter{
         let x:string;
         for(x in this.stats)
         {
-            let stat:number = this.rollDice();
-
-            this.stats[x] = stat;
+            this.stats[x] = this.rollDice();
         }
     }
 
@@ -47,5 +45,5 @@ class DnDCharacter{
 $(document).ready(function () {
 
    let char = new DnDCharacter("john");
-   console.log(char.stats);
+
 });
