@@ -1,35 +1,21 @@
-class dice{
-
-    public static rollD4(): number
-    {
+class dice {
+    static rollD4() {
         return Math.floor((Math.random() * 4) + 1);
     }
-
-    public static rollD6(): number
-    {
+    static rollD6() {
         return Math.floor((Math.random() * 6) + 1);
     }
-
-    public static rollD10(): number
-    {
+    static rollD10() {
         return Math.floor((Math.random() * 10) + 1);
     }
-
-    public static rollD12(): number
-    {
+    static rollD12() {
         return Math.floor((Math.random() * 12) + 1);
     }
-
-    public static rollD20(): number
-    {
+    static rollD20() {
         return Math.floor((Math.random() * 20) + 1);
     }
-
-    public static rollD100(): number
-    {
+    static rollD100() {
         return Math.floor((Math.random() * 100));
     }
-
-
 }
-
+//# sourceMappingURL=dice.js.map
