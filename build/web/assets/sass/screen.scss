@@ -1,4 +1,4 @@
-$dndRed: #e50712;
+$headerBackground: #3b609b;
 $backgroundwrapper: rgba(25, 25, 25, 0.75);
 $backgroundcollertranistion: background-color 0.5s ease-in;
 
@@ -22,8 +22,9 @@ $backgroundcollertranistion: background-color 0.5s ease-in;
 
 header {
   padding: 1rem;
-  background-color: $dndRed;
+  background-color: $headerBackground;
   h1 {
+    color: gainsboro;
 
     text-align: center;
     font-size: 3.5rem;
@@ -34,9 +35,10 @@ header {
 
 article
 {
-  background-color: $dndRed;
-  border-top: black;
+  background-color: $headerBackground;
+  border-top: gainsboro;
   border-style: ridge;
+
 }
 
 h2{
@@ -51,7 +53,29 @@ nav{
   margin-left: auto;
   margin-right: auto;
   padding: 1.60rem;
+  a{
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: #028ecc;
+    -webkit-transition: $backgroundcollertranistion;
+    -moz-transition: $backgroundcollertranistion;
+    -ms-transition: $backgroundcollertranistion;
+    -o-transition: $backgroundcollertranistion;
+    transition: $backgroundcollertranistion;
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    font-family: 'Britannic Bold',  sans-serif;
 
+
+  }
+
+
+  a:hover
+  {
+    background-color: #d58512;
+  }
 }
 
 ul{
@@ -63,31 +87,17 @@ ul{
   }
 
 
-  li{
 
 
-    a{
-      border-radius: 0.5rem;
-      text-align: center;
-      padding: 1rem 2rem;
-      background-color: #028ecc;
-      -webkit-transition: $backgroundcollertranistion;
-      -moz-transition: $backgroundcollertranistion;
-      -ms-transition: $backgroundcollertranistion;
-      -o-transition: $backgroundcollertranistion;
-      transition: $backgroundcollertranistion;
-      font-size: 1rem;
-      text-decoration: none;
-      color: black;
-      font-family: 'Britannic Bold',  sans-serif;
 
 
-    }
+}
 
-  }
-  a:hover
+form{
+  background-color: #6089c9;
+  fieldset
   {
-    background-color: #d58512;
+    max-width: 50%;
   }
 }
 

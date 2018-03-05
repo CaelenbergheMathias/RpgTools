@@ -12,16 +12,17 @@
       margin-bottom: 3rem; } }
 header {
   padding: 1rem;
-  background-color: #e50712; }
+  background-color: #3b609b; }
   header h1 {
+    color: gainsboro;
     text-align: center;
     font-size: 3.5rem;
     letter-spacing: 1rem;
     font-family: 'mael', serif; }
 
 article {
-  background-color: #e50712;
-  border-top: black;
+  background-color: #3b609b;
+  border-top: gainsboro;
   border-style: ridge; }
 
 h2 {
@@ -34,14 +35,7 @@ nav {
   margin-left: auto;
   margin-right: auto;
   padding: 1.60rem; }
-
-ul {
-  display: flex; }
-  @media only screen and (min-width: 500px) {
-    ul {
-      justify-content: space-evenly;
-      flex-direction: row; } }
-  ul li a {
+  nav a {
     border-radius: 0.5rem;
     text-align: center;
     padding: 1rem 2rem;
@@ -55,8 +49,20 @@ ul {
     text-decoration: none;
     color: black;
     font-family: 'Britannic Bold',  sans-serif; }
-  ul a:hover {
+  nav a:hover {
     background-color: #d58512; }
+
+ul {
+  display: flex; }
+  @media only screen and (min-width: 500px) {
+    ul {
+      justify-content: space-evenly;
+      flex-direction: row; } }
+
+form {
+  background-color: #6089c9; }
+  form fieldset {
+    max-width: 50%; }
 
 html {
   height: 100%;
