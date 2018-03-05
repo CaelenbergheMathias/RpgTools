@@ -3753,7 +3753,7 @@ interface JQuery {
     queue(queueName: string, callback: Function): JQuery;
 }
 declare module "jquery" {
-    export = jquery;
+    export = jQuery;
 }
 declare var jQuery: JQueryStatic;
 declare var $: JQueryStatic;

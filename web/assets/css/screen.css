@@ -32,8 +32,17 @@ article {
   border-style: ridge;
   padding: 1rem; }
 
-fieldset:nth-of-type(2) input {
-  max-width: 2rem; }
+label {
+  display: inline-block;
+  min-width: 5rem; }
+
+div {
+  display: block;
+  margin-bottom: 0.5rem; }
+
+input[type="number"] {
+  max-width: 2rem;
+  margin-right: 0.3rem; }
 
 h2 {
   margin-bottom: 0.4rem; }
@@ -72,7 +81,10 @@ ul {
 form {
   background-color: #6089c9; }
   form fieldset {
-    max-width: 50%; }
+    max-width: 75%; }
+
+legend {
+  font-family: serif; }
 
 html {
   height: 100%;
