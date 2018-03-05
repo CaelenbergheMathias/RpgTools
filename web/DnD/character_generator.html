@@ -41,35 +41,49 @@
             </select>
 
             <label for="class">Class: </label>
+
             <select name="class" id="class">
                 <option>Wizard</option>
             </select>
-            <label for="alignment">Alignment</label>
+
+            <label for="alignment">Alignment: </label>
             <select id="alignment" name="alignment">
-                
+                <option value="LG">Lawful Good</option>
+                <option value="NG">Neutral Good</option>
+                <option value="CG">Chaotic Good</option>
+                <option value="LN">Lawful Neutral</option>
+                <option value="TN">True Neutral</option>
+                <option value="CN">Chaotic Neutral</option>
+                <option value="LE">Lawful Evil</option>
+                <option value="NE">Neutral Evil</option>
+                <option value="CE">Chaotic Evil</option>
             </select>
 
-            <label for="max_hp">Max HP</label><input name="max_hp" id="max_hp" type="number" min="1" value="1">
+            <label for="max_hp">Max HP: </label><input name="max_hp" id="max_hp" type="number" min="1" value="1">
 
             <label for="cur_hp">Curr HP: </label><input type="number" id="cur_hp" name="cur_hp">
 
             <label for="speed">Speed: </label><input id="speed" name="speed" type="number" min="1">
 
-            <label for="initiative">Initiative</label><input type="number" name="initiative" id="initiative" min="1">
+            <label for="initiative">Initiative: </label><input type="number" name="initiative" id="initiative" min="1">
 
-            <label for="ac">AC</label><input type="number" id="ac" name="ac">
+            <label for="ac">AC: </label><input type="number" id="ac" name="ac">
 
         </fieldset>
         <fieldset>
             <legend>Base Stats</legend>
-            <label for="STR">STR</label><input name="STR" id="STR" type="number" min="3">
-            <label for="DEX">DEX</label><input name="DEX" id="DEX" type="number" min="3">
-            <label for="CON">CON</label><input name="CON" id="CON" type="number" min="3">
-            <label for="INT">INT</label><input name="INT" id="INT" type="number" min="3">
-            <label for="WIS">WIS</label><input name="WIS" id="WIS" type="number" min="3">
-            <label for="CHA">CHA</label><input name="CHA" id="CHA" type="number" min="3">
+            <label for="STR">STR: <input name="STR" id="STR" type="number" min="3"/> <span id="STRMOD"></span></label>
+            <label for="DEX">DEX: <input name="DEX" id="DEX" type="number" min="3"/> <span id="DEXMOD"></span></label>
+            <label for="CON">CON: <input name="CON" id="CON" type="number" min="3"/> <span id="CONMOD"></span></label>
+            <label for="INT">INT: <input name="INT" id="INT" type="number" min="3"/> <span id="INTMOD"></span></label>
+            <label for="WIS">WIS: <input name="WIS" id="WIS" type="number" min="3"/> <span id="WISMOD"></span></label>
+            <label for="CHA">CHA: <input name="CHA" id="CHA" type="number" min="3"/> <span id="CHAMOD"></span></label>
         </fieldset>
     </form>
 </main>
+
+<script type="text/javascript" src="../assets/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../assets/js/dice.js"></script>
+<script type="text/javascript" src="../assets/js/script.js"></script>
 </body>
 </html>

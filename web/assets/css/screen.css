@@ -3,6 +3,12 @@
   src: url("../fonts/mael.woff2") format("woff2");
   font-weight: normal;
   font-style: normal; }
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 @media only screen and (max-width: 500px) {
   ul {
     flex-direction: column;
@@ -23,7 +29,11 @@ header {
 article {
   background-color: #3b609b;
   border-top: gainsboro;
-  border-style: ridge; }
+  border-style: ridge;
+  padding: 1rem; }
+
+fieldset:nth-of-type(2) input {
+  max-width: 2rem; }
 
 h2 {
   margin-bottom: 0.4rem; }
@@ -69,10 +79,10 @@ html {
   background-image: url("../media/dice-2351448.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
 
 body {
-  height: 100vh;
-  background-color: rgba(25, 25, 25, 0.75); }
+  height: 100vh; }
 
 /*# sourceMappingURL=screen.css.map */

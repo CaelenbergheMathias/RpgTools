@@ -1,4 +1,10 @@
 class DnDCharacter {
+    getStats() {
+        return this.stats;
+    }
+    calculatMod(stat) {
+        return Math.floor((stat - 10) / 2);
+    }
     constructor(name) {
         this.name = name;
         this.stats = {
@@ -24,6 +30,10 @@ class DnDCharacter {
         let x;
         for (x in this.stats) {
             this.stats[x] = this.rollDice();
+            let value = this.stats[x];
+            let mod = this.calculatMod(value);
+            $("#" + x).val(value);
+            $("#" + x + "MOD").html("mod: " + mod);
         }
     }
 }
