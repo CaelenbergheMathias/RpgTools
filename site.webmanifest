@@ -1,6 +1,7 @@
 {
     "name": "RPG Tools",
     "short_name": "RPG Tools",
+    "start_url": ".",
     "icons": [
         {
             "src": "/android-chrome-36x36.png",
