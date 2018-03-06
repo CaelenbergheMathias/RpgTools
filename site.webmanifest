@@ -1,8 +1,8 @@
 {
     "name": "RPG Tools",
     "short_name": "RPG Tools",
-    "start_url": "."
-    "scope": "/DnD/"
+    "start_url": ".",
+    "scope": "/DnD/",
     "icons": [
         {
             "src": "/android-chrome-36x36.png",
