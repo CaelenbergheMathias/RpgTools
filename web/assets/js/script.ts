@@ -1,14 +1,51 @@
 /// <reference path ="../typings/jquery/index.d.ts"/>
 const abilities = ["STR","DEX","CON","INT","WIS","CHA"];
+let char:any;
 
 class DnDCharacter {
     private name: string;
     private stats: any;
     private race: any;
     private subrace: any;
+    private class: any;
 
-    public getStats(): any {
-        return this.stats;
+
+    public setRace()
+    {
+
+        let x:string;
+        this.race = races.find(x => x.name === $("#race").val());
+        $("#speed").val(this.race.speed);
+        loadSubRaces();
+        this.setSubRace();
+
+
+    }
+
+    public setSubRace()
+    {
+        let x:string;
+        let subrace = subRaces.find(x => x.name === $("#subrace").val());
+        console.log(subrace)
+        this.subrace = subrace===undefined? "none":subrace;
+
+        for (x in this.stats) {
+
+            //console.log(x+": "+this.stats[x]);
+            this.applyValue(x);
+        }
+
+    }
+
+    public setClass()
+    {
+        this.class = classes.find(x=> x.name===$("#class").val());
+        this.setHitPoints();
+    }
+
+    public setAC()
+    {
+
     }
 
     private calculatMod(stat: number): number {
@@ -17,9 +54,7 @@ class DnDCharacter {
 
     public constructor(name: string) {
         this.name = name;
-        this.race = races.find(x => x.name === $("#race").val());
-        let subrace = subRaces.find(x => x.name === $("#subrace").val);
-        this.subrace = subrace===undefined? "none":subrace;
+        this.setRace();
         this.stats = {
             STR: 0,
             DEX: 0,
@@ -29,8 +64,11 @@ class DnDCharacter {
             CHA: 0
         };
         this.rollStats();
-
+        this.setClass();
+        this.setAC();
     }
+
+
 
     private rollDice(): number {
         let numbers = [];
@@ -57,18 +95,35 @@ class DnDCharacter {
         $("#" + x).val(value);
         $("#"+x+"BONUS").html("Bonus: "+bonus);
         $("#" + x + "MOD").html("mod: " + mod)
+
+    }
+
+    private setHitPoints()
+    {
+        let CON = this.stats["CON"];
+        let health = this.calculatMod(CON);
+
+        console.log(this.class)
+        health += this.class.hit_die;
+        console.log(health);
+        $("#max_hp").val(health);
     }
 
 
     public rollStats(): void {
-        let x: string;
 
+
+        let x: string;
+        console.log(this);
         for (x in this.stats) {
             this.stats[x] = this.rollDice();
-
+            //console.log(x+": "+this.stats[x]);
             this.applyValue(x);
         }
+
     }
+
+
 
 }
 
@@ -103,9 +158,7 @@ function loadSubRaces() {
 
 }
 
-function applyRace() {
 
-}
 
 function loadSubClasses() {
     let options: string = "<option value='none'>none</option>";
@@ -124,13 +177,38 @@ function loadData() {
     loadSubRaces();
 }
 
+function rollStats()
+{
+    char.rollStats();
+    char.setHitPoints();
+}
+
+function applyRaceChanges()
+{
+    char.setRace();
+}
+
+function applySubRaceChanges()
+{
+    char.setSubRace();
+}
+
+function applyClassChanges()
+{
+    loadSubClasses();
+    char.setClass();
+}
+
+
 $(document).ready(function () {
 
     loadData();
-    let char = new DnDCharacter("");
-    $("#race").on("change", loadSubRaces);
-    $("#class").on("change", loadSubClasses);
-    console.log(char)
-    $("fieldset:nth-of-type(2) button").on("click", char.rollStats)
+    char = new DnDCharacter("");
+    $("#race").on("change", applyRaceChanges);
+    $("#subrace").on("change", applySubRaceChanges);
+
+    $("#class").on("change", applyClassChanges);
+    //console.log(char)
+    $("fieldset:nth-of-type(2) button").click(rollStats)
 
 });

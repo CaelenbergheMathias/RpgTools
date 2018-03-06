@@ -79,9 +79,13 @@ ul {
       flex-direction: row; } }
 
 form {
-  background-color: #6089c9; }
+  background-color: rgba(96, 137, 201, 0.4);
+  display: flex;
+  align-self: center; }
   form fieldset {
-    max-width: 75%; }
+    background-color: #7397cf;
+    max-width: 75%;
+    padding: 1.5rem; }
 
 legend {
   font-family: serif; }
