@@ -1,7 +1,7 @@
 $headerBackground: #3b609b;
 $backgroundwrapper: rgba(25, 25, 25, 0.75);
 $backgroundcollertranistion: background-color 0.5s ease-in;
-
+@import url('https://fonts.googleapis.com/css?family=Caesar+Dressing');
 @font-face {
   font-family: 'mael';
   src: url('../fonts/mael.woff2') format('woff2');
@@ -37,7 +37,7 @@ header {
     text-align: center;
     font-size: 3.5rem;
     letter-spacing: 1rem;
-    font-family: 'mael', serif;
+    font-family: 'mael', 'Ceasar Dressing', serif;
   }
 }
 
