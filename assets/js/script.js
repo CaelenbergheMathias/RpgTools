@@ -88,6 +88,7 @@ class DnDCharacter {
     }
     setLevel() {
         this.level = parseInt($("#level").val());
+        $("#profbonus").val(Math.floor((this.level + 7) / 4));
     }
     rollStats() {
         let x;
@@ -134,7 +135,8 @@ function loadSkills() {
         let name = removeSpaces(skill.name);
         let regularname = skill.name;
         let stat = skill.ability_score.name;
-        string += `<div><span></span><input disabled="disabled" type='number' name='${name}' id='${name}' value='0' />`;
+        string += `<div><input type="checkbox" id="#${name}checkbox" name="#${name}checkbox"/>`;
+        string += `<input disabled="disabled" type='number' name='${name}' id='${name}' value='0' />`;
         string += `<label for='${name}'>${regularname} (${stat})</label></div>`;
     });
     $("#skills").html(string);
