@@ -83,6 +83,7 @@ form {
   display: flex;
   align-self: center; }
   form fieldset {
+    border-radius: 1.5rem;
     background-color: #7397cf;
     max-width: 75%;
     padding: 1.5rem; }
