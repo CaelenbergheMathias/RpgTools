@@ -2,12 +2,7 @@ $headerBackground: #3b609b;
 $backgroundwrapper: rgba(25, 25, 25, 0.75);
 $backgroundcollertranistion: background-color 0.5s ease-in;
 
-@font-face {
-  font-family: 'mael';
-  src: url('../fonts/mael.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 form{
   display: flex;
@@ -37,7 +32,7 @@ header {
     text-align: center;
     font-size: 3.5rem;
     letter-spacing: 1rem;
-    font-family: 'mael','Caesar Dressing', serif;
+    font-family: 'Caesar Dressing', serif;
   }
 }
 
@@ -133,18 +128,15 @@ legend
   font-family: serif;
 }
 
-html{
-  height: 100%;
+
+
+body{
+  height: 100vh;
   background-image: url("../media/dice-2351448.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-
-body{
-  height: 100vh;
-
 
 }
 
