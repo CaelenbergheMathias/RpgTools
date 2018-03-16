@@ -45,7 +45,7 @@ class DnDCharacter {
             if (this.subrace !== "none") {
                 bonus += this.subrace.ability_bonuses[index];
             }
-           
+
             let mod = this.calculatMod(parseInt($(`#${stat}`).val()) + bonus);
 
 
