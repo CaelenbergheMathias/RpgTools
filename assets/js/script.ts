@@ -40,10 +40,14 @@ class DnDCharacter {
         skills.forEach(skill =>{
             let name = removeSpaces(skill.name);
             let stat = skill.ability_score.name;
-            let mod = this.calculatMod($(`#${stat}`).val());
+            let index = abilities.indexOf(stat);
+            let bonus = this.race.ability_bonuses[index];
+            if (this.subrace !== "none") {
+                bonus += this.subrace.ability_bonuses[index];
+            }
+           
+            let mod = this.calculatMod(parseInt($(`#${stat}`).val()) + bonus);
 
-            let profbonus = levels.find(x=> x.level === this.level && x.class.name === this.class.name).prof_bonus;
-            console.log(profbonus);
 
             $(`#${name}`).val(mod);
             skillz.push({skill: `${name}`, prof: mod, ability_score: stat})
@@ -81,6 +85,7 @@ class DnDCharacter {
     public setClass() {
         this.class = classes.find(x => x.name === $("#class").val());
         this.setHitPoints();
+
     }
 
     public setSubClass() {
@@ -214,7 +219,7 @@ function loadSkills()
         let regularname = skill.name;
         let stat = skill.ability_score.name;
         string += `<div><input type="checkbox" id="#${name}checkbox" name="#${name}checkbox"/>`;
-        string += `<input disabled="disabled" type='number' name='${name}' id='${name}' value='0' />`;
+        string += `<input disabled="disabled" type='number' name='${name}' id='${name}' />`;
         string += `<label for='${name}'>${regularname} (${stat})</label></div>`;
 
     });
@@ -250,12 +255,13 @@ function applySubRaceChanges() {
 function applyClassChanges() {
     loadSubClasses();
     char.setClass();
+
 }
 
 function applyLevelChange() {
     char.setLevel();
     char.setSkills();
-    console.log(char);
+    //console.log(char);
 }
 
 function applySubClassChanges() {
