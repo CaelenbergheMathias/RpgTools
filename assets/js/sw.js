@@ -4,7 +4,8 @@ var urlsToCache = [
     '../css/reset.css',
     '../css/screen.css',
     'dice.js',
-    '../../Pages/*'
+    '../../Pages/DnD.html',
+    '../../Pages/DnD_character_Generator.html'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
