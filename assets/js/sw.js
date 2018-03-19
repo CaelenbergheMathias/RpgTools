@@ -2,15 +2,13 @@ var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
     '../../index.html',
     '../css/reset.css',
-    '../css/screen.css',
-    'RpgTools/Pages/CoC.html',
-    'RpgTools/Pages/DnD_character_Generator.html'
-
+    '../css/screen.css'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
         .then(function (cache) {
         console.log('Opened cache');
+        console.log(urlsToCache);
         return cache.addAll(urlsToCache);
     }));
 });
