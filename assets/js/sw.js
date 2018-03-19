@@ -1,8 +1,9 @@
 var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
-    'RpgTools/index.html',
-    'RpgTools/assets/css/reset.css',
-    'RpgTools/assets/css/screen.css'
+    '../../index.html',
+    '../css/reset.css',
+    '../css/screen.css',
+    'dice.js'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
