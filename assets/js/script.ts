@@ -1,4 +1,7 @@
 /// <reference path ="../typings/jquery/index.d.ts"/>
+/// <reference path ="../typings/localforage/localforage.d.ts"/>
+
+
 const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char: DnDCharacter;
@@ -279,5 +282,12 @@ $(document).ready(function () {
     $("#subclass").on("change", applySubClassChanges);
     console.log(char);
     $("fieldset:nth-of-type(2) button").click(rollStats)
+    localforage.length().then(function (data:number) {
+        console.log(data)
+        localforage.setItem("key"+data,char);//gives error but works for some reason
+    })
+
+
+
 
 });

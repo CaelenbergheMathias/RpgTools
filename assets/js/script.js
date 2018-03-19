@@ -186,5 +186,9 @@ $(document).ready(function () {
     $("#subclass").on("change", applySubClassChanges);
     console.log(char);
     $("fieldset:nth-of-type(2) button").click(rollStats);
+    localforage.length().then(function (data) {
+        console.log(data);
+        localforage.setItem("key" + data, char);
+    });
 });
 //# sourceMappingURL=script.js.map

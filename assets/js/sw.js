@@ -3,7 +3,8 @@ var urlsToCache = [
     '../../index.html',
     '../css/reset.css',
     '../css/screen.css',
-    'dice.js'
+    'dice.js',
+    '../../Pages/*'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
