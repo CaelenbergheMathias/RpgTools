@@ -2,7 +2,8 @@ var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
     '../../index.html',
     '../css/reset.css',
-    '../css/screen.css'
+    '../css/screen.css',
+    'dice.js'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
@@ -20,6 +21,7 @@ self.addEventListener('fetch', function(event) {
                     if (response) {
                         return response;
                     }
+
                     return fetch(event.request);
                 }
             )

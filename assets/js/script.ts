@@ -1,6 +1,5 @@
 /// <reference path ="../typings/jquery/index.d.ts"/>
-
-
+const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char: DnDCharacter;
 

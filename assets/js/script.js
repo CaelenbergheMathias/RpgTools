@@ -1,3 +1,4 @@
+const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char;
 class DnDCharacter {
