@@ -1,10 +1,10 @@
 var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
-    '/index.html',
+    '../../index.html',
     '../css/reset.css',
     '../css/screen.css',
-    '/RpgTools/Pages/CoC.html',
-    '/RogTools/Pages/DnD_character_Generator.html'
+    'RpgTools/Pages/CoC.html',
+    'RpgTools/Pages/DnD_character_Generator.html'
 
 ];
 self.addEventListener('install', function (event) {
