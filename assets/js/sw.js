@@ -3,7 +3,6 @@ var urlsToCache = [
     '../../index.html',
     '../css/reset.css',
     '../css/screen.css',
-    'dice.js',
     '../../Pages/DnD.html',
     '../../Pages/DnD_character_Generator.html'
 ];
