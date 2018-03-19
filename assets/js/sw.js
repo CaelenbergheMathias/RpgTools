@@ -1,8 +1,8 @@
 var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
-    '../../index.html',
-    '../css/reset.css',
-    '../css/screen.css'
+    '/index.html',
+    '/assets/css/reset.css',
+    '/assets/css/screen.css'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
