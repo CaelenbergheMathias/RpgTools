@@ -191,4 +191,4 @@ $(document).ready(function () {
         localforage.setItem("key" + data, char);
     });
 });
-//# sourceMappingURL=script.js.map
+//# sourceMappingURL=DnD.js.map
