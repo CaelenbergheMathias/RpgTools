@@ -1,12 +1,13 @@
 var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
-    '../../index.html',
-    '../css/reset.css',
-    '../css/screen.css',
-    'dice.js',
-    'script.js',
-    '../../Pages/DnD.html',
-    '../../Pages/DnD_character_generator.html'
+    'index.html',
+    'assets/css/reset.css',
+    'assets/css/screen.css',
+    'assets/js/jquery-3.1.1.min.js',
+    'assets/js/dice.js',
+    'Pages/DnD.html',
+    'Pages/CoC.html',
+    'Pages/GURPS.html'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
