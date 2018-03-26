@@ -1,9 +1,9 @@
+;
 const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char;
 class DnDCharacter {
-    constructor(name) {
-        this.name = name;
+    constructor() {
         this.setRace();
         this.stats = {
             STR: 0,
@@ -19,6 +19,9 @@ class DnDCharacter {
         this.setLevel();
         this.setSubClass();
         this.setSkills();
+    }
+    setName() {
+        this.name = $("#name").val();
     }
     setSkills() {
         let skillz = [];
@@ -176,19 +179,40 @@ function applyLevelChange() {
 function applySubClassChanges() {
     char.setSubClass();
 }
+function addToLocalForage(e) {
+    e.preventDefault();
+    let name = $("#name").val();
+    console.log(name);
+    char.setName();
+    localforage.getItem("chars").then(function (value) {
+        if (value === null) {
+            let array = [char];
+            localforage.setItem("chars", array);
+        }
+        else {
+            let filtered = value.filter(function (x) {
+                return x.name === name;
+            });
+            console.log(filtered.length);
+            if (filtered.length <= 0) {
+                value.push(char);
+            }
+            else if (confirm("A Character With this name already exists do you want to overwrite it?")) {
+                let index = value.indexOf(filtered[0]);
+                value[index] = char;
+            }
+            localforage.setItem("chars", value);
+        }
+    });
+}
 $(document).ready(function () {
     loadData();
-    char = new DnDCharacter("");
+    char = new DnDCharacter();
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);
     $("#level").on("change", applyLevelChange);
     $("#class").on("change", applyClassChanges);
     $("#subclass").on("change", applySubClassChanges);
-    console.log(char);
-    $("fieldset:nth-of-type(2) button").click(rollStats);
-    localforage.length().then(function (data) {
-        console.log(data);
-        localforage.setItem("key" + data, char);
-    });
+    $("input[type=submit]").on("click", addToLocalForage);
 });
 //# sourceMappingURL=DnD.js.map

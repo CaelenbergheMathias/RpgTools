@@ -1,13 +1,14 @@
 /// <reference path ="../typings/jquery/index.d.ts"/>
 /// <reference path ="../typings/localforage/localforage.d.ts"/>
 
+;
 
 const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char: DnDCharacter;
 
 class DnDCharacter {
-    private name: string;
+    public name: string;
     private level: number;
     private stats: any;
     private race: any;
@@ -16,8 +17,8 @@ class DnDCharacter {
     private subclass: any;
     private skills:any[];
 
-    public constructor(name: string) {
-        this.name = name;
+    public constructor() {
+
         this.setRace();
         this.stats = {
             STR: 0,
@@ -34,6 +35,11 @@ class DnDCharacter {
         this.setSubClass();
         this.setSkills()
 
+    }
+
+    public setName()
+    {
+        this.name = $("#name").val();
     }
 
     public setSkills()
@@ -271,22 +277,53 @@ function applySubClassChanges() {
     //console.log(char);
 }
 
+function addToLocalForage(e:Event)
+{
+    e.preventDefault();
+    let name:string = $("#name").val();
+    console.log(name);
+    char.setName();
+    localforage.getItem("chars").then(function (value:DnDCharacter[]) {
+        if(value===null)
+        {
+
+            let array = [char];
+            localforage.setItem("chars",array);
+        }
+        else{
+            let filtered = value.filter(function (x) {
+                return x.name === name;
+            });
+            console.log(filtered.length)
+            if(filtered.length<=0)
+            {
+
+                value.push(char);
+            }
+            else if(confirm("A Character With this name already exists do you want to overwrite it?"))
+            {
+                let index = value.indexOf(filtered[0]);
+
+                value[index] = char;
+            }
+            localforage.setItem("chars",value);
+        }
+    });
+}
 $(document).ready(function () {
 
     loadData();
-    char = new DnDCharacter("");
+    char = new DnDCharacter();
+
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);
     $("#level").on("change", applyLevelChange);
     $("#class").on("change", applyClassChanges);
     $("#subclass").on("change", applySubClassChanges);
-    console.log(char);
-    $("fieldset:nth-of-type(2) button").click(rollStats)
-    localforage.length().then(function (data:number) {
-        console.log(data)
-        localforage.setItem("key"+data,char);//gives error but works for some reason
-    })
+    //console.log(char);
 
+
+    $("input[type=submit]").on("click",addToLocalForage);
 
 
 
