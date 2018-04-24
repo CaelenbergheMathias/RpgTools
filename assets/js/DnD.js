@@ -208,6 +208,7 @@ function addToLocalForage(e) {
 $(document).ready(function () {
     loadData();
     char = new DnDCharacter();
+    $("#reroll").on("click", rollStats);
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);
     $("#level").on("change", applyLevelChange);
