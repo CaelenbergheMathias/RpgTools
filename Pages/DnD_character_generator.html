@@ -28,6 +28,11 @@
 <main>
     <form method="post">
         <fieldset>
+            <select id="madechars">
+                <option value="nc">New Character</option>
+            </select>
+        </fieldset>
+        <fieldset>
             <div>
                 <label for="name">Name: </label><input type="text" id="name"/>
             </div>
@@ -38,13 +43,11 @@
             <div>
                 <label for="race">Race: </label>
                 <select name="race" id="race">
-                    <option>elf</option>
                 </select>
             </div>
             <div>
                 <label for="subrace">Subrace: </label>
                 <select name="subrace" id="subrace">
-                    <option>high elf</option>
                 </select>
             </div>
             <div>
@@ -142,6 +145,7 @@
 </main>
 
 <script type="text/javascript" src="../assets/js/DnDdata.js"></script>
+<script type="text/javascript" src="../assets/js/DnDCharacter.js"></script>
 <script src="../assets/js/localforage.js"></script>
 <script type="text/javascript" src="../assets/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="../assets/js/dice.js"></script>
