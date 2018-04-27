@@ -38,7 +38,7 @@ function loadSkills() {
         let name = removeSpaces(skill.name);
         let regularname = skill.name;
         let stat = skill.ability_score.name;
-        string += `<div><input type="checkbox" id="#${name}checkbox" name="#${name}checkbox"/>`;
+        string += `<div><input type="checkbox" id="${name}checkbox" name="${name}checkbox"/>`;
         string += `<input disabled="disabled" type='number' name='${name}' id='${name}' />`;
         string += `<label for='${name}'>${regularname} (${stat})</label></div>`;
     });
@@ -75,6 +75,9 @@ function applyLevelChange() {
 function applySubClassChanges() {
     char.setSubClass();
 }
+function applyCheck() {
+    char.setSkills();
+}
 function addToLocalForage(e) {
     e.preventDefault();
     let name = $("#name").val();
@@ -110,6 +113,8 @@ $(document).ready(function () {
     $("#level").on("change", applyLevelChange);
     $("#class").on("change", applyClassChanges);
     $("#subclass").on("change", applySubClassChanges);
+    $("input[type=checkbox]").on("change", applyCheck);
+    console.log(char);
     $("input[type=submit]").on("click", addToLocalForage);
 });
 //# sourceMappingURL=DnD.js.map

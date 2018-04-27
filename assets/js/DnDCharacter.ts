@@ -28,26 +28,30 @@ class DnDCharacter {
 
     }
 
-    public setName()
-    {
+    public setName() {
         this.name = $("#name").val();
     }
 
-    public setSkills()
-    {
+    public setSkills() {
         let skillz:object[] = [];
         skills.forEach(skill =>{
             let name = removeSpaces(skill.name);
             let stat = skill.ability_score.name;
             let index = abilities.indexOf(stat);
+
             let bonus = this.race.ability_bonuses[index];
+            let checked = document.getElementById(`${name}checkbox`).checked;
+
             if (this.subrace !== "none") {
                 bonus += this.subrace.ability_bonuses[index];
             }
 
             let mod = this.calculatMod(parseInt($(`#${stat}`).val()) + bonus);
 
-
+            if(checked)
+            {
+                mod += this.calculateProfBonus();
+            }
             $(`#${name}`).val(mod);
             skillz.push({skill: `${name}`, prof: mod, ability_score: stat})
 
@@ -55,7 +59,10 @@ class DnDCharacter {
         this.skills = skillz;
     }
 
-
+    public calculateProfBonus():number
+    {
+        return Math.floor((this.level+7)/4)
+    }
 
     public setRace() {
 
@@ -101,7 +108,6 @@ class DnDCharacter {
         return Math.floor((stat - 10) / 2);
     }
 
-
     private rollDice(): number {
         let numbers = [];
         for (let i: number = 0; i < 4; i++) {
@@ -141,7 +147,7 @@ class DnDCharacter {
 
     public setLevel() {
         this.level = parseInt($("#level").val());
-        $("#profbonus").val(Math.floor((this.level+7)/4))
+        $("#profbonus").val(this.calculateProfBonus());
     }
 
     public rollStats(): void {
@@ -156,6 +162,5 @@ class DnDCharacter {
         }
 
     }
-
 
 }

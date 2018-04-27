@@ -26,14 +26,21 @@ class DnDCharacter {
             let stat = skill.ability_score.name;
             let index = abilities.indexOf(stat);
             let bonus = this.race.ability_bonuses[index];
+            let checked = document.getElementById(`${name}checkbox`).checked;
             if (this.subrace !== "none") {
                 bonus += this.subrace.ability_bonuses[index];
             }
             let mod = this.calculatMod(parseInt($(`#${stat}`).val()) + bonus);
+            if (checked) {
+                mod += this.calculateProfBonus();
+            }
             $(`#${name}`).val(mod);
             skillz.push({ skill: `${name}`, prof: mod, ability_score: stat });
         });
         this.skills = skillz;
+    }
+    calculateProfBonus() {
+        return Math.floor((this.level + 7) / 4);
     }
     setRace() {
         this.race = races.find(x => x.name === $("#race").val());
@@ -91,7 +98,7 @@ class DnDCharacter {
     }
     setLevel() {
         this.level = parseInt($("#level").val());
-        $("#profbonus").val(Math.floor((this.level + 7) / 4));
+        $("#profbonus").val(this.calculateProfBonus());
     }
     rollStats() {
         let x;
