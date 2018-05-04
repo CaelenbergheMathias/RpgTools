@@ -5,7 +5,12 @@ var urlsToCache = [
     'assets/css/screen.css',
     'assets/js/jquery-3.1.1.min.js',
     'assets/js/dice.js',
+    'assets/js/DnD.js',
+    'assets/js/DnDCharacter.js',
+    'assets/js/DnDdata.js',
+    'assets/js/localforage.js',
     'Pages/DnD.html',
+    'pages/DnD_character_generator.html',
     'Pages/CoC.html',
     'Pages/GURPS.html'
 ];
@@ -28,15 +33,7 @@ self.addEventListener('fetch', function(event) {
                         return response;
                     }
 
-                    fetch(event.request).then(function (response) {
-                        caches.open(CACHE_NAME).then(function (cache) {
-                            console.log(cache);
-
-                            cache.put(event.request, response.clone());
-                        })
-                    });
-
-                    return response;
+                    return fetch(event.request);
                 }
             )
     );
