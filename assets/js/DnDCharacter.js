@@ -53,7 +53,7 @@ class DnDCharacter {
         this.subrace = subrace === undefined ? "none" : subrace;
         let x;
         for (x in this.stats) {
-            this.applyValue(x);
+            this.applyStats(x);
         }
     }
     setClass() {
@@ -78,8 +78,9 @@ class DnDCharacter {
         numbers.reverse();
         return numbers[0] + numbers[1] + numbers[2];
     }
-    applyValue(x) {
+    applyStats(x) {
         let value = this.stats[x];
+        console.log(value);
         let index = abilities.indexOf(x);
         let bonus = this.race.ability_bonuses[index];
         if (this.subrace !== "none") {
@@ -104,7 +105,7 @@ class DnDCharacter {
         let x;
         for (x in this.stats) {
             this.stats[x] = this.rollDice();
-            this.applyValue(x);
+            this.applyStats(x);
         }
     }
 }

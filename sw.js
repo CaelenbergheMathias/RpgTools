@@ -28,7 +28,11 @@ self.addEventListener('fetch', function(event) {
                         return response;
                     }
 
-                    return fetch(event.request);
+                    fetch(event.request).then(function (response) {
+                        cache.put(event.request, response.clone());
+                    });
+
+                    return response;
                 }
             )
     );

@@ -1,12 +1,12 @@
 class DnDCharacter {
     public name: string;
-    private level: number;
-    private stats: any;
-    private race: any;
-    private subrace: any;
-    private class: any;
-    private subclass: any;
-    private skills:any[];
+    public level: number;
+    public stats: any;
+    public race: any;
+    public subrace: any;
+    public class: any;
+    public subclass: any;
+    public skills:any[];
 
     public constructor() {
 
@@ -27,6 +27,8 @@ class DnDCharacter {
         this.setSkills()
 
     }
+
+
 
     public setName() {
         this.name = $("#name").val();
@@ -83,7 +85,7 @@ class DnDCharacter {
         for (x in this.stats) {
 
             //console.log(x+": "+this.stats[x]);
-            this.applyValue(x);
+            this.applyStats(x);
         }
 
     }
@@ -119,9 +121,11 @@ class DnDCharacter {
 
     }
 
-    public applyValue(x: string) {
-        let value = this.stats[x];
+    public applyStats(x: string) {
 
+
+        let value = this.stats[x];
+        console.log(value);
 
         let index = abilities.indexOf(x);
         let bonus = this.race.ability_bonuses[index];
@@ -158,7 +162,7 @@ class DnDCharacter {
         for (x in this.stats) {
             this.stats[x] = this.rollDice();
             //console.log(x+": "+this.stats[x]);
-            this.applyValue(x);
+            this.applyStats(x);
         }
 
     }

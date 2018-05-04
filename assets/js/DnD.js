@@ -1,3 +1,4 @@
+var set = Reflect.set;
 const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char;
@@ -44,16 +45,50 @@ function loadSkills() {
     });
     $("#skills").html(string);
 }
+function setCharacter(tofindchar) {
+    localforage.getItem("dndchars").then(function (value) {
+        let otherchar = value.find(function (dndchar) {
+            return dndchar.name === tofindchar;
+        });
+        char.stats = otherchar.stats;
+        char.name = otherchar.name;
+        char.level = otherchar.level;
+        char.race = otherchar.race;
+        char.subrace = otherchar.subrace;
+        char.class = otherchar.class;
+        char.skills = otherchar.skills;
+        setStats();
+        applyAll();
+        console.log(char);
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
+function loadCharacter() {
+    let tofindchar = $("#madechars").val();
+    if (tofindchar !== "nc") {
+        setCharacter(tofindchar);
+    }
+}
+function setStats() {
+    for (let k in char.stats) {
+        char.applyStats(k);
+    }
+}
 function loadData() {
     loadClasses();
     loadSubClasses();
     loadRaces();
     loadSubRaces();
     loadSkills();
-    localforage.getItem("chars").then(function (value) {
-        value.forEach(function (char) {
-            $("#madechars").append(`<option>${char.name}</option>`);
-        });
+    localforage.getItem("dndchars").then(function (value) {
+        if (value !== null) {
+            value.forEach(function (char) {
+                $("#madechars").append(`<option value="${char.name}">${char.name}</option>`);
+            });
+        }
+    }).catch(function (err) {
+        console.log(err);
     });
 }
 function rollStats() {
@@ -80,6 +115,14 @@ function applyLevelChange() {
 function applySubClassChanges() {
     char.setSubClass();
 }
+function applyAll() {
+    char.setHitPoints();
+    char.setClass();
+    char.setSubClass();
+    char.setRace();
+    char.setSubRace();
+    char.setSkills();
+}
 function applyCheck() {
     char.setSkills();
 }
@@ -88,10 +131,10 @@ function addToLocalForage(e) {
     let name = $("#name").val();
     console.log(name);
     char.setName();
-    localforage.getItem("chars").then(function (value) {
+    localforage.getItem("dndchars").then(function (value) {
         if (value === null) {
             let array = [char];
-            localforage.setItem("chars", array);
+            localforage.setItem("dndchars", array);
         }
         else {
             let filtered = value.filter(function (x) {
@@ -105,13 +148,14 @@ function addToLocalForage(e) {
                 let index = value.indexOf(filtered[0]);
                 value[index] = char;
             }
-            localforage.setItem("chars", value);
+            localforage.setItem("dndchars", value);
         }
     });
 }
 $(document).ready(function () {
     loadData();
     char = new DnDCharacter();
+    char.rollStats();
     $("#reroll").on("click", rollStats);
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);
@@ -119,6 +163,7 @@ $(document).ready(function () {
     $("#class").on("change", applyClassChanges);
     $("#subclass").on("change", applySubClassChanges);
     $("input[type=checkbox]").on("change", applyCheck);
+    $("#madechars").on("change", loadCharacter);
     console.log(char);
     $("input[type=submit]").on("click", addToLocalForage);
 });
