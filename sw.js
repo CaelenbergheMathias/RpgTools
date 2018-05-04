@@ -30,6 +30,7 @@ self.addEventListener('fetch', function(event) {
 
                     fetch(event.request).then(function (response) {
                         caches.open(CACHE_NAME).then(function (cache) {
+                            console.log(cache);
 
                             cache.put(event.request, response.clone());
                         })
