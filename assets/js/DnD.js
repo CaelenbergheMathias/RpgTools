@@ -50,6 +50,11 @@ function loadData() {
     loadRaces();
     loadSubRaces();
     loadSkills();
+    localforage.getItem("chars").then(function (value) {
+        value.forEach(function (char) {
+            $("#madechars").append(`<option>${char.name}</option>`);
+        });
+    });
 }
 function rollStats() {
     char.rollStats();

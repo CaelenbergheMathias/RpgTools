@@ -76,6 +76,11 @@ function loadData() {
     loadRaces();
     loadSubRaces();
     loadSkills();
+    localforage.getItem("chars").then(function (value:DnDCharacter[]) {
+        value.forEach(function (char) {
+            $("#madechars").append(`<option>${char.name}</option>`);
+        })
+    })
 }
 
 function rollStats() {
