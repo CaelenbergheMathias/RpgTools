@@ -34,7 +34,7 @@ self.addEventListener('fetch', function(event) {
                 var fetchRequest = event.request.clone();
 
                 return fetch(fetchRequest).then(
-                    function(response) {response
+                    function(response) {
                         if(!response || response.status !== 200 || response.type !== 'basic') {
                             return response;
                         }
