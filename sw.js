@@ -10,7 +10,7 @@ var urlsToCache = [
     'assets/js/DnDdata.js',
     'assets/js/localforage.js',
     'Pages/DnD.html',
-    'pages/DnD_character_generator.html',
+    'Pages/DnD_character_generator.html',
     'Pages/CoC.html',
     'Pages/GURPS.html'
 ];
@@ -27,14 +27,45 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request)
             .then(function(response) {
-                    // Cache hit - return response
-                    if (response) {
-                        console.log(response);
+                // Cache hit - return response
+                if (response) {
+                    return response;
+                }
+                var fetchRequest = event.request.clone();
+
+                return fetch(fetchRequest).then(
+                    function(response) {response
+                        if(!response || response.status !== 200 || response.type !== 'basic') {
+                            return response;
+                        }
+
+
+                        var responseToCache = response.clone();
+
+                        caches.open(CACHE_NAME)
+                            .then(function(cache) {
+                                cache.put(event.request, responseToCache);
+                            });
+
                         return response;
                     }
-
-                    return fetch(event.request);
-                }
-            )
+                );
+            })
     );
 });
+
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         caches.match(event.request)
+//             .then(function(response) {
+//                     // Cache hit - return response
+//                     if (response) {
+//                         console.log(response);
+//                         return response;
+//                     }
+//
+//                     return fetch(event.request);
+//                 }
+//             )
+//     );
+// });
