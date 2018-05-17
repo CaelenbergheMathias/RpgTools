@@ -109,13 +109,25 @@ function loadCharacter()
     }
 }
 
+function changeStats()
+{
+    for(let k in char.stats){
+        let value:number = parseInt($(`#${k}`).val());
+        console.log(k)
+        console.log(value)
+        char.changeStats(k,value);
+    }
+    char.setSkills();
+}
 
 function setStats()
 {
     for(let k in char.stats)
     {
+
         char.applyStats(k);
     }
+
 
 
 }
@@ -191,7 +203,7 @@ function addToLocalForage(e:Event)
 {
     e.preventDefault();
     let name:string = $("#name").val();
-    console.log(name);
+    //console.log(name);
     char.setName();
     localforage.getItem("dndchars").then(function (value:DnDCharacter[]) {
         if(value===null)
@@ -224,7 +236,7 @@ $(document).ready(function () {
 
     loadData();
     char = new DnDCharacter();
-    char.rollStats();
+
     $("#reroll").on("click", rollStats);
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);
@@ -233,6 +245,7 @@ $(document).ready(function () {
     $("#subclass").on("change", applySubClassChanges);
     $("input[type=checkbox]").on("change",applyCheck);
     $("#madechars").on("change",loadCharacter);
+    $("input[type=number]").on("change",changeStats);
     console.log(char);
 
 

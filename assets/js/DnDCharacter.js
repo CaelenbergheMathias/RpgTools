@@ -56,6 +56,10 @@ class DnDCharacter {
             this.applyStats(x);
         }
     }
+    changeStats(stat, value) {
+        this.stats[stat] = value;
+        this.applyStats(stat);
+    }
     setClass() {
         this.class = classes.find(x => x.name === $("#class").val());
         this.setHitPoints();
@@ -80,7 +84,6 @@ class DnDCharacter {
     }
     applyStats(x) {
         let value = this.stats[x];
-        console.log(value);
         let index = abilities.indexOf(x);
         let bonus = this.race.ability_bonuses[index];
         if (this.subrace !== "none") {
