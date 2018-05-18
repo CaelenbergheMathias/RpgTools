@@ -68,6 +68,8 @@ function loadCharacter() {
     let tofindchar = $("#madechars").val();
     if (tofindchar !== "nc") {
         setCharacter(tofindchar);
+        applyAll();
+        document.getElementById("name").value = tofindchar;
     }
 }
 function changeStats() {
@@ -84,13 +86,10 @@ function setStats() {
         char.applyStats(k);
     }
 }
-function loadData() {
-    loadClasses();
-    loadSubClasses();
-    loadRaces();
-    loadSubRaces();
-    loadSkills();
+function getCharacterOptions() {
     localforage.getItem("dndchars").then(function (value) {
+        $("#madechars").empty();
+        $("#madechars").append("<option value=\"nc\">New Character</option>");
         if (value !== null) {
             value.forEach(function (char) {
                 $("#madechars").append(`<option value="${char.name}">${char.name}</option>`);
@@ -99,6 +98,14 @@ function loadData() {
     }).catch(function (err) {
         console.log(err);
     });
+}
+function loadData() {
+    loadClasses();
+    loadSubClasses();
+    loadRaces();
+    loadSubRaces();
+    loadSkills();
+    getCharacterOptions();
 }
 function rollStats() {
     char.rollStats();
@@ -158,7 +165,7 @@ function addToLocalForage(e) {
             }
             localforage.setItem("dndchars", value);
         }
-    });
+    }).then(getCharacterOptions);
 }
 $(document).ready(function () {
     loadData();
