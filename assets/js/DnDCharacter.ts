@@ -8,7 +8,7 @@ class DnDCharacter {
     public subclass: any;
     public skills: any[];
     public alignment: string;
-    public hp: number[];
+    public hp: number[] = [];
     public speed: number;
     public initiative: number;
     public ac: number;
@@ -29,7 +29,9 @@ class DnDCharacter {
         this.setStartingAC();
         this.setLevel();
         this.setSubClass();
-        this.setSkills()
+        this.setSkills();
+        this.initiative = this.calculatMod(this.stats["DEX"]);
+        $("#initiative").val(this.initiative);
 
     }
 
@@ -122,6 +124,8 @@ class DnDCharacter {
         }
 
         this.ac = ac;
+        $("#ac").val(ac);
+
 
     }
 
@@ -140,6 +144,11 @@ class DnDCharacter {
 
     }
 
+    public setInitiative()
+    {
+        this.initiative = parseInt($("#initiative").val())
+    }
+
     public applyStats(x: string) {
 
 
@@ -152,6 +161,10 @@ class DnDCharacter {
             bonus += this.subrace.ability_bonuses[index];
         }
         let mod = this.calculatMod(value + bonus);
+        if(x === "DEX")
+        {
+            this.initiative = mod;
+        }
         $("#" + x).val(value);
         $("#" + x + "BONUS").html("Bonus: " + bonus);
         $("#" + x + "MOD").html("mod: " + mod)
@@ -166,6 +179,9 @@ class DnDCharacter {
         if (health <= this.hp[0]) {
             this.hp[1] = health;
         }
+        else {
+            $("#cur_hp").val(this.hp[0]);
+        }
     }
 
     public setHitPoints() {
@@ -178,6 +194,7 @@ class DnDCharacter {
         this.changeCurrentHealth(health);
         //console.log(health);
         $("#max_hp").val(health);
+        $("#cur_hp").val(health);
     }
 
     public setLevel() {

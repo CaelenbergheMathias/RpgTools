@@ -46,6 +46,8 @@ fieldset {
 
 }
 
+
+
 header {
   padding: 1rem;
   background-color: $headerBackground;
@@ -72,7 +74,7 @@ label {
   min-width: 4rem;
 }
 
-div {
+div, textarea {
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -141,6 +143,11 @@ form {
 
 legend {
   font-family: serif;
+}
+
+.hideable
+{
+  margin-top: 15px;
 }
 
 body {

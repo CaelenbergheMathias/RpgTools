@@ -34,7 +34,7 @@ function loadSubClasses() {
     $("#subclass").html(options);
 }
 function loadSkills() {
-    let string = "<legend>Skills</legend>";
+    let string = "";
     skills.forEach(skill => {
         let name = removeSpaces(skill.name);
         let regularname = skill.name;
@@ -81,9 +81,9 @@ function changeStats() {
     }
     char.setSkills();
     char.setAc();
-    char.setHitPoints();
     char.changeMaxHealth(parseInt($("#max_hp").val()));
     char.changeCurrentHealth(parseInt($("#cur_hp").val()));
+    char.setInitiative();
 }
 function setStats() {
     for (let k in char.stats) {
@@ -146,6 +146,11 @@ function applyAll() {
 function applyCheck() {
     char.setSkills();
 }
+function hideReveal(e) {
+    e.preventDefault();
+    $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(1000);
+    console.log();
+}
 function addToLocalForage(e) {
     e.preventDefault();
     let name = $("#name").val();
@@ -183,7 +188,7 @@ $(document).ready(function () {
     $("input[type=checkbox]").on("change", applyCheck);
     $("#madechars").on("change", loadCharacter);
     $("input[type=number]").on("change", changeStats);
-    console.log(char);
+    $("fieldset>a").on("click", hideReveal);
     $("input[type=submit]").on("click", addToLocalForage);
 });
 //# sourceMappingURL=DnD.js.map

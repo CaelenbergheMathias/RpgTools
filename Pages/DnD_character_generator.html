@@ -104,8 +104,8 @@
         </fieldset>
 
         <fieldset>
-            <legend>Base Stats</legend>
-            <div class="hideable">
+            <a href="#">Base Stats</a>
+            <div class="hideable" id="basestats">
                 <div>
                     <label for="STR">STR: </label><input name="STR" id="STR" type="number" min="3"/><span
                         id="STRBONUS"></span> <span
@@ -143,14 +143,17 @@
 
 
         <fieldset>
-            <a href="#">hide</a>
-            <div class="hideable" id="skills">
+            <a href="#">Skills</a>
+            <div id="skills" class="hideable">
 
             </div>
 
         </fieldset>
 
-        <fieldset id="otherthings">
+        <fieldset>
+            <a href="#">Backstory</a>
+
+            <textarea class="hideable" name="backstory" id="backstory" rows="10" cols="50"></textarea>
 
         </fieldset>
 

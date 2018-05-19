@@ -57,7 +57,7 @@ function loadSubClasses() {
 
 function loadSkills()
 {
-    let string = "<legend>Skills</legend>";
+    let string = "";
     skills.forEach(skill => {
         let name = removeSpaces(skill.name);
         let regularname = skill.name;
@@ -121,9 +121,9 @@ function changeStats()
     }
     char.setSkills();
     char.setAc();
-    char.setHitPoints();
     char.changeMaxHealth(parseInt($("#max_hp").val()));
     char.changeCurrentHealth(parseInt($("#cur_hp").val()));
+    char.setInitiative();
 }
 
 function setStats()
@@ -212,6 +212,15 @@ function applyCheck()
     char.setSkills();
 }
 
+function hideReveal(e:any)
+{
+    e.preventDefault();
+
+    $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(1000);
+    console.log()
+
+}
+
 function addToLocalForage(e:Event)
 {
     e.preventDefault();
@@ -246,6 +255,7 @@ function addToLocalForage(e:Event)
     }).then(getCharacterOptions);
 
 }
+
 $(document).ready(function () {
 
     loadData();
@@ -260,7 +270,7 @@ $(document).ready(function () {
     $("input[type=checkbox]").on("change",applyCheck);
     $("#madechars").on("change",loadCharacter);
     $("input[type=number]").on("change",changeStats);
-    console.log(char);
+    $("fieldset>a").on("click",hideReveal);
 
 
     $("input[type=submit]").on("click",addToLocalForage);
