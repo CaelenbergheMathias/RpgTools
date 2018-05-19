@@ -12,6 +12,7 @@ class DnDCharacter {
     public speed: number;
     public initiative: number;
     public ac: number;
+    public backstory:string;
 
     public constructor() {
 
@@ -213,6 +214,11 @@ class DnDCharacter {
             this.applyStats(x);
         }
 
+    }
+
+    public setBackstory()
+    {
+        this.backstory = $("#backstory").val();
     }
 
 }

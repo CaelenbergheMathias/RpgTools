@@ -143,5 +143,8 @@ class DnDCharacter {
             this.applyStats(x);
         }
     }
+    setBackstory() {
+        this.backstory = $("#backstory").val();
+    }
 }
 //# sourceMappingURL=DnDCharacter.js.map

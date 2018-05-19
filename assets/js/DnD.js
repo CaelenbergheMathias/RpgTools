@@ -155,6 +155,7 @@ function addToLocalForage(e) {
     e.preventDefault();
     let name = $("#name").val();
     char.setName();
+    char.setBackstory();
     localforage.getItem("dndchars").then(function (value) {
         if (value === null) {
             let array = [char];
@@ -165,6 +166,7 @@ function addToLocalForage(e) {
                 return x.name === name;
             });
             console.log(filtered.length);
+            console.log(char);
             if (filtered.length <= 0) {
                 value.push(char);
             }

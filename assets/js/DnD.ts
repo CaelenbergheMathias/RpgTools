@@ -227,6 +227,7 @@ function addToLocalForage(e:Event)
     let name:string = $("#name").val();
     //console.log(name);
     char.setName();
+    char.setBackstory();
     localforage.getItem("dndchars").then(function (value:DnDCharacter[]) {
         if(value===null)
         {
@@ -239,6 +240,7 @@ function addToLocalForage(e:Event)
                 return x.name === name;
             });
             console.log(filtered.length);
+            console.log(char);
             if(filtered.length<=0)
             {
 
@@ -251,6 +253,7 @@ function addToLocalForage(e:Event)
                 value[index] = char;
             }
             localforage.setItem("dndchars",value);
+
         }
     }).then(getCharacterOptions);
 
