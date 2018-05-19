@@ -153,8 +153,7 @@ function applyCheck() {
 }
 function hideReveal(e) {
     e.preventDefault();
-    $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(1000);
-    console.log();
+    $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(500);
 }
 function addToLocalForage(e) {
     e.preventDefault();

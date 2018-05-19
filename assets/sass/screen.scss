@@ -141,10 +141,18 @@ form {
   }
 }
 
-legend {
-  font-family: serif;
+textarea{
+  margin-bottom: 1.3rem;
 }
 
+#features, #backstoryandtraits
+{
+  label{
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+}
 .hideable
 {
   margin-top: 15px;

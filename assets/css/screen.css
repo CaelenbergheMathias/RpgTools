@@ -102,8 +102,13 @@ form {
     max-width: 75%;
     padding: 1.5rem; }
 
-legend {
-  font-family: serif; }
+textarea {
+  margin-bottom: 1.3rem; }
+
+#features label, #backstoryandtraits label {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem; }
 
 .hideable {
   margin-top: 15px; }

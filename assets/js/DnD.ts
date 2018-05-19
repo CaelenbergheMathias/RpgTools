@@ -225,8 +225,8 @@ function hideReveal(e:any)
 {
     e.preventDefault();
 
-    $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(1000);
-    console.log()
+    $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(500);
+
 
 }
 

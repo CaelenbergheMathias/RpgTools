@@ -151,14 +151,30 @@
         </fieldset>
 
         <fieldset>
-            <a href="#">Backstory</a>
-
-            <textarea class="hideable" name="backstory" id="backstory" rows="10" cols="50"></textarea>
-
+            <a href="#">Backstory and Traits</a>
+            <div class="hideable" id="backstoryandtraits">
+                <label for="backstory">backstory</label>
+                <textarea  name="backstory" id="backstory" rows="10" cols="50"></textarea>
+                <label for="personalitytraits">Personality Traits</label>
+                <textarea name="personalitytraits" id="personalitytraits" cols="50" rows="10"></textarea>
+                <label for="ideals">Ideals</label>
+                <textarea name="ideals" id="ideals" cols="50" rows="10"></textarea>
+                <label for="bonds">Bonds</label>
+                <textarea name="bonds" id="bonds" cols="50" rows="10"></textarea>
+                <label for="flaws">Flaws</label>
+                <textarea name="flaws" id="flaws" cols="50" rows="10"></textarea>
+            </div>
         </fieldset>
 
+        <fieldset>
+            <a href="#">Features</a>
+            <div class="hideable" id="features">
+                <label for="classfeatures">Class Featurs</label>
+                <textarea name="classfeatures" id="classfeatures" cols="50" rows="10"></textarea>
+            </div>
+        </fieldset>
 
-        <input type="submit"/>
+        <input type="submit" value="Save"/>
     </form>
 </main>
 
