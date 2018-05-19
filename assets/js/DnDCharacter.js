@@ -19,6 +19,12 @@ class DnDCharacter {
         this.initiative = this.calculatMod(this.stats["DEX"]);
         $("#initiative").val(this.initiative);
     }
+    setAlignment() {
+        this.alignment = $("#alignment").val();
+    }
+    changeAlignement() {
+        $("#alignment").val(this.alignment);
+    }
     setName() {
         this.name = $("#name").val();
     }

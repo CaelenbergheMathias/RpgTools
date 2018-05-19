@@ -56,7 +56,14 @@ function setCharacter(tofindchar) {
         char.race = otherchar.race;
         char.subrace = otherchar.subrace;
         char.class = otherchar.class;
+        char.subclass = otherchar.subclass;
         char.skills = otherchar.skills;
+        char.alignment = otherchar.alignment;
+        char.hp = otherchar.hp;
+        char.speed = otherchar.speed;
+        char.initiative = otherchar.initiative;
+        char.ac = otherchar.ac;
+        char.backstory = otherchar.backstory;
         setStats();
         applyAll();
         console.log(char);
@@ -68,7 +75,6 @@ function loadCharacter() {
     let tofindchar = $("#madechars").val();
     if (tofindchar !== "nc") {
         setCharacter(tofindchar);
-        applyAll();
         document.getElementById("name").value = tofindchar;
     }
 }
@@ -136,7 +142,6 @@ function applySubClassChanges() {
     char.setSubClass();
 }
 function applyAll() {
-    char.setHitPoints();
     char.setClass();
     char.setSubClass();
     char.setRace();
@@ -156,6 +161,7 @@ function addToLocalForage(e) {
     let name = $("#name").val();
     char.setName();
     char.setBackstory();
+    char.setAlignment();
     localforage.getItem("dndchars").then(function (value) {
         if (value === null) {
             let array = [char];

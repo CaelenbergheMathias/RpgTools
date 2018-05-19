@@ -36,6 +36,15 @@ class DnDCharacter {
 
     }
 
+    public setAlignment()
+    {
+        this.alignment = $("#alignment").val();
+    }
+
+    public changeAlignement()
+    {
+        $("#alignment").val(this.alignment);
+    }
 
     public setName() {
         this.name = $("#name").val();
