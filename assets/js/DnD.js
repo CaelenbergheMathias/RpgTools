@@ -80,6 +80,10 @@ function changeStats() {
         char.changeStats(k, value);
     }
     char.setSkills();
+    char.setAc();
+    char.setHitPoints();
+    char.changeMaxHealth(parseInt($("#max_hp").val()));
+    char.changeCurrentHealth(parseInt($("#cur_hp").val()));
 }
 function setStats() {
     for (let k in char.stats) {

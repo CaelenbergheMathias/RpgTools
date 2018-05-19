@@ -115,11 +115,15 @@ function changeStats()
 {
     for(let k in char.stats){
         let value:number = parseInt($(`#${k}`).val());
-        console.log(k)
-        console.log(value)
+        console.log(k);
+        console.log(value);
         char.changeStats(k,value);
     }
     char.setSkills();
+    char.setAc();
+    char.setHitPoints();
+    char.changeMaxHealth(parseInt($("#max_hp").val()));
+    char.changeCurrentHealth(parseInt($("#cur_hp").val()));
 }
 
 function setStats()

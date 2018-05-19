@@ -11,7 +11,7 @@ class DnDCharacter {
         };
         this.rollStats();
         this.setClass();
-        this.setAC();
+        this.setStartingAC();
         this.setLevel();
         this.setSubClass();
         this.setSkills();
@@ -68,7 +68,15 @@ class DnDCharacter {
         let subclass = subclasses.find(x => x.name === $("#subclass").val());
         this.subclass = subclass === undefined ? "none" : subclass;
     }
-    setAC() {
+    setAc() {
+        this.ac = parseInt($("#ac").val());
+    }
+    setStartingAC() {
+        let ac = 10 + this.calculatMod(this.stats["DEX"]);
+        if (this.class.name === ("Barbarian" || "Monk")) {
+            ac += this.calculatMod(this.stats["CON"]);
+        }
+        this.ac = ac;
     }
     calculatMod(stat) {
         return Math.floor((stat - 10) / 2);
@@ -94,10 +102,20 @@ class DnDCharacter {
         $("#" + x + "BONUS").html("Bonus: " + bonus);
         $("#" + x + "MOD").html("mod: " + mod);
     }
+    changeMaxHealth(health) {
+        this.hp[0] = health;
+    }
+    changeCurrentHealth(health) {
+        if (health <= this.hp[0]) {
+            this.hp[1] = health;
+        }
+    }
     setHitPoints() {
         let CON = this.stats["CON"];
         let health = this.calculatMod(CON);
         health += this.class.hit_die;
+        this.changeMaxHealth(health);
+        this.changeCurrentHealth(health);
         $("#max_hp").val(health);
     }
     setLevel() {

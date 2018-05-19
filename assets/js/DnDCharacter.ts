@@ -6,12 +6,12 @@ class DnDCharacter {
     public subrace: any;
     public class: any;
     public subclass: any;
-    public skills:any[];
-    public alignment:string;
-    public hp:number[];
-    public speed:number;
-    public initiative:number;
-    public ac:number;
+    public skills: any[];
+    public alignment: string;
+    public hp: number[];
+    public speed: number;
+    public initiative: number;
+    public ac: number;
 
     public constructor() {
 
@@ -26,7 +26,7 @@ class DnDCharacter {
         };
         this.rollStats();
         this.setClass();
-        this.setAC();
+        this.setStartingAC();
         this.setLevel();
         this.setSubClass();
         this.setSkills()
@@ -34,14 +34,13 @@ class DnDCharacter {
     }
 
 
-
     public setName() {
         this.name = $("#name").val();
     }
 
     public setSkills() {
-        let skillz:object[] = [];
-        skills.forEach(skill =>{
+        let skillz: object[] = [];
+        skills.forEach(skill => {
             let name = removeSpaces(skill.name);
             let stat = skill.ability_score.name;
             let index = abilities.indexOf(stat);
@@ -55,8 +54,7 @@ class DnDCharacter {
 
             let mod = this.calculatMod(parseInt($(`#${stat}`).val()) + bonus);
 
-            if(checked)
-            {
+            if (checked) {
                 mod += this.calculateProfBonus();
             }
             $(`#${name}`).val(mod);
@@ -66,9 +64,8 @@ class DnDCharacter {
         this.skills = skillz;
     }
 
-    public calculateProfBonus():number
-    {
-        return Math.floor((this.level+7)/4)
+    public calculateProfBonus(): number {
+        return Math.floor((this.level + 7) / 4)
     }
 
     public setRace() {
@@ -95,8 +92,7 @@ class DnDCharacter {
 
     }
 
-    public  changeStats(stat:string,value:number)
-    {
+    public changeStats(stat: string, value: number) {
         this.stats[stat] = value;
         this.applyStats(stat);
     }
@@ -113,7 +109,19 @@ class DnDCharacter {
         this.subclass = subclass === undefined ? "none" : subclass;
     }
 
-    public setAC() {
+    public setAc()
+    {
+        this.ac = parseInt($("#ac").val());
+    }
+
+    public setStartingAC() {
+        let ac = 10 + this.calculatMod(this.stats["DEX"]);
+        if(this.class.name === ("Barbarian" || "Monk" ))
+        {
+            ac += this.calculatMod(this.stats["CON"]);
+        }
+
+        this.ac = ac;
 
     }
 
@@ -150,12 +158,24 @@ class DnDCharacter {
 
     }
 
+    public changeMaxHealth(health: number) {
+        this.hp[0] = health;
+    }
+
+    public changeCurrentHealth(health: number) {
+        if (health <= this.hp[0]) {
+            this.hp[1] = health;
+        }
+    }
+
     public setHitPoints() {
         let CON = this.stats["CON"];
         let health = this.calculatMod(CON);
 
         //console.log(this.class)
         health += this.class.hit_die;
+        this.changeMaxHealth(health);
+        this.changeCurrentHealth(health);
         //console.log(health);
         $("#max_hp").val(health);
     }
