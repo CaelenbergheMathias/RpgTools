@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href="../assets/css/reset.css" rel="stylesheet">
@@ -27,13 +27,15 @@
 </header>
 <main>
     <form method="post">
-        <fieldset>
-            <legend>Your Characters</legend>
-            <select id="madechars" name="madechars" >
 
-            </select>
-        </fieldset>
         <fieldset>
+            <div>
+                <label for="madechars">Your Characters</label>
+                <select id="madechars" name="madechars">
+
+                </select>
+            </div>
+
             <div>
                 <label for="name">Name: </label><input type="text" id="name"/>
             </div>
@@ -103,45 +105,54 @@
 
         <fieldset>
             <legend>Base Stats</legend>
-            <div>
-                <label for="STR">STR: </label><input name="STR" id="STR" type="number" min="3"/><span
-                    id="STRBONUS"></span> <span
-                    id="STRMOD"></span>
+            <div class="hideable">
+                <div>
+                    <label for="STR">STR: </label><input name="STR" id="STR" type="number" min="3"/><span
+                        id="STRBONUS"></span> <span
+                        id="STRMOD"></span>
+                </div>
+                <div>
+                    <label for="DEX">DEX: </label><input name="DEX" id="DEX" type="number" min="3"/><span
+                        id="DEXBONUS"></span> <span
+                        id="DEXMOD"></span>
+                </div>
+                <div>
+                    <label for="CON">CON: </label><input name="CON" id="CON" type="number" min="3"/><span
+                        id="CONBONUS"></span> <span
+                        id="CONMOD"></span>
+                </div>
+                <div>
+                    <label for="INT">INT: </label><input name="INT" id="INT" type="number" min="3"/><span
+                        id="INTBONUS"></span> <span
+                        id="INTMOD"></span>
+                </div>
+                <div>
+                    <label for="WIS">WIS: </label><input name="WIS" id="WIS" type="number" min="3"/><span
+                        id="WISBONUS"></span> <span
+                        id="WISMOD"></span>
+                </div>
+                <div>
+                    <label for="CHA">CHA: </label><input name="CHA" id="CHA" type="number" min="3"/><span
+                        id="CHABONUS"></span> <span
+                        id="CHAMOD"></span>
+                </div>
+                <button type="button" id="reroll">Re-Roll Stats</button>
+
             </div>
-            <div>
-                <label for="DEX">DEX: </label><input name="DEX" id="DEX" type="number" min="3"/><span
-                    id="DEXBONUS"></span> <span
-                    id="DEXMOD"></span>
-            </div>
-            <div>
-                <label for="CON">CON: </label><input name="CON" id="CON" type="number" min="3"/><span
-                    id="CONBONUS"></span> <span
-                    id="CONMOD"></span>
-            </div>
-            <div>
-                <label for="INT">INT: </label><input name="INT" id="INT" type="number" min="3"/><span
-                    id="INTBONUS"></span> <span
-                    id="INTMOD"></span>
-            </div>
-            <div>
-                <label for="WIS">WIS: </label><input name="WIS" id="WIS" type="number" min="3"/><span
-                    id="WISBONUS"></span> <span
-                    id="WISMOD"></span>
-            </div>
-            <div>
-                <label for="CHA">CHA: </label><input name="CHA" id="CHA" type="number" min="3"/><span
-                    id="CHABONUS"></span> <span
-                    id="CHAMOD"></span>
-            </div>
-            <button type="button" id="reroll">Re-Roll Stats</button>
         </fieldset>
-        <fieldset id="skills">
+
+
+        <fieldset>
+            <a href="#">hide</a>
+            <div class="hideable" id="skills">
+
+            </div>
 
         </fieldset>
+
         <fieldset id="otherthings">
 
         </fieldset>
-
 
 
         <input type="submit"/>

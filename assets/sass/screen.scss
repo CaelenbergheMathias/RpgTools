@@ -2,10 +2,8 @@ $headerBackground: #3b609b;
 $backgroundwrapper: rgba(25, 25, 25, 0.75);
 $backgroundcollertranistion: background-color 0.5s ease-in;
 
-
-
-form{
-  fieldset{
+form {
+  fieldset {
     margin: 5px;
 
   }
@@ -15,11 +13,32 @@ form{
   align-items: center;
 }
 
+fieldset {
+  a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: lightgray;
+  }
+  a:hover {
+    -webkit-transition: $backgroundcollertranistion;
+    -moz-transition: $backgroundcollertranistion;
+    -ms-transition: $backgroundcollertranistion;
+    -o-transition: $backgroundcollertranistion;
+    transition: $backgroundcollertranistion;
+    background-color: orange;
+  }
+}
+
 @media only screen and (max-width: 500px) {
-  ul{
+  ul {
     flex-direction: column;
     justify-content: space-evenly;
-    li{
+    li {
       align-self: center;
       margin-bottom: 3rem;
     }
@@ -40,40 +59,42 @@ header {
   }
 }
 
-article
-{
+article {
   background-color: $headerBackground;
   border-top: gainsboro;
   border-style: ridge;
   padding: 1rem;
 
 }
-label{
+
+label {
   display: inline-block;
   min-width: 4rem;
 }
-div{
+
+div {
   display: block;
   margin-bottom: 0.5rem;
 }
-input[type="number"]{
+
+input[type="number"] {
   max-width: 2rem;
   margin-right: 0.3rem;
 }
 
-h2{
+h2 {
   margin-bottom: 0.4rem;
 }
 
-p{
+p {
   margin-bottom: 0.2rem;
 }
 
-nav{
+nav {
   margin-left: auto;
   margin-right: auto;
   padding: 1.60rem;
-  a{
+  a {
     border-radius: 0.5rem;
     text-align: center;
     padding: 1rem 2rem;
@@ -86,19 +107,16 @@ nav{
     font-size: 1rem;
     text-decoration: none;
     color: black;
-    font-family: 'Britannic Bold',  sans-serif;
-
+    font-family: 'Britannic Bold', sans-serif;
 
   }
 
-
-  a:hover
-  {
+  a:hover {
     background-color: #d58512;
   }
 }
 
-ul{
+ul {
 
   display: flex;
   @media only screen and (min-width: 500px) {
@@ -106,20 +124,14 @@ ul{
     flex-direction: row;
   }
 
-
-
-
-
-
 }
 
-form{
-  background-color: rgba(96,137,201,0.4);
+form {
+  background-color: rgba(96, 137, 201, 0.4);
   display: flex;
   align-self: center;
 
-  fieldset
-  {
+  fieldset {
     border-radius: 1.5rem;
     background-color: #7397cf;
     max-width: 75%;
@@ -127,14 +139,11 @@ form{
   }
 }
 
-legend
-{
+legend {
   font-family: serif;
 }
 
-
-
-body{
+body {
   height: 100vh;
   background-image: url("../media/background.jpg");
   background-size: cover;

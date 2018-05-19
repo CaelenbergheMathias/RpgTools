@@ -7,6 +7,11 @@ class DnDCharacter {
     public class: any;
     public subclass: any;
     public skills:any[];
+    public alignment:string;
+    public hp:number[];
+    public speed:number;
+    public initiative:number;
+    public ac:number;
 
     public constructor() {
 
