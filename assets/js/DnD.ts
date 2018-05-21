@@ -8,6 +8,7 @@ const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char: DnDCharacter;
 
 function removeSpaces(string: string) {
+    console.log(typeof string)
     let newstring: string[] = string.split(" ");
 
     //console.log(newstring);
@@ -62,10 +63,11 @@ function loadSkills()
         let name = removeSpaces(skill.name);
         let regularname = skill.name;
         let stat = skill.ability_score.name;
+
+
         string += `<div><input type="checkbox" id="${name}checkbox" name="${name}checkbox"/>`;
         string += `<input disabled="disabled" type='number' name='${name}' id='${name}' />`;
         string += `<label for='${name}'>${regularname} (${stat})</label></div>`;
-
     });
     //console.log(string);
 
@@ -96,7 +98,12 @@ function setCharacter(tofindchar:string)
             char.backstory = otherchar.backstory;
 
             setStats();
-            applyAll();
+            char.setClass();
+            char.setSubClass();
+            char.setRace();
+            char.setSubRace();
+            setChecks();
+            char.setSkills();
 
             console.log(char);
 
@@ -180,6 +187,7 @@ function rollStats() {
 
 function applyRaceChanges() {
     char.setRace();
+    char.setRaceTraits();
     char.setSkills()
 }
 
@@ -221,12 +229,31 @@ function applyCheck()
     char.setSkills();
 }
 
+function changeAlignment()
+{
+    char.setAlignment();
+}
+
 function hideReveal(e:any)
 {
     e.preventDefault();
 
     $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(500);
 
+
+}
+
+function setChecks()
+{
+    console.log(char.skills);
+    char.skills.forEach(function (skill) {
+        console.log(skill);
+        if(skill.checked)
+        {
+
+            $(`#${skill.skill}checkbox`).prop("checked",true);
+        }
+    });
 
 }
 
@@ -273,7 +300,7 @@ $(document).ready(function () {
 
     loadData();
     char = new DnDCharacter();
-
+    setChecks();
     $("#reroll").on("click", rollStats);
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);
@@ -284,7 +311,6 @@ $(document).ready(function () {
     $("#madechars").on("change",loadCharacter);
     $("input[type=number]").on("change",changeStats);
     $("fieldset>a").on("click",hideReveal);
-
 
     $("input[type=submit]").on("click",addToLocalForage);
 

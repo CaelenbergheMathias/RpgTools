@@ -3,6 +3,7 @@ const cacheAvaible = 'caches' in self;
 const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 let char;
 function removeSpaces(string) {
+    console.log(typeof string);
     let newstring = string.split(" ");
     return newstring.join("");
 }
@@ -65,7 +66,12 @@ function setCharacter(tofindchar) {
         char.ac = otherchar.ac;
         char.backstory = otherchar.backstory;
         setStats();
-        applyAll();
+        char.setClass();
+        char.setSubClass();
+        char.setRace();
+        char.setSubRace();
+        setChecks();
+        char.setSkills();
         console.log(char);
     }).catch(function (err) {
         console.log(err);
@@ -124,6 +130,7 @@ function rollStats() {
 }
 function applyRaceChanges() {
     char.setRace();
+    char.setRaceTraits();
     char.setSkills();
 }
 function applySubRaceChanges() {
@@ -151,9 +158,21 @@ function applyAll() {
 function applyCheck() {
     char.setSkills();
 }
+function changeAlignment() {
+    char.setAlignment();
+}
 function hideReveal(e) {
     e.preventDefault();
     $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(500);
+}
+function setChecks() {
+    console.log(char.skills);
+    char.skills.forEach(function (skill) {
+        console.log(skill);
+        if (skill.checked) {
+            $(`#${skill.skill}checkbox`).prop("checked", true);
+        }
+    });
 }
 function addToLocalForage(e) {
     e.preventDefault();
@@ -186,6 +205,7 @@ function addToLocalForage(e) {
 $(document).ready(function () {
     loadData();
     char = new DnDCharacter();
+    setChecks();
     $("#reroll").on("click", rollStats);
     $("#race").on("change", applyRaceChanges);
     $("#subrace").on("change", applySubRaceChanges);

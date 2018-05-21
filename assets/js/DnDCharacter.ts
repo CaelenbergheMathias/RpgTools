@@ -13,9 +13,11 @@ class DnDCharacter {
     public initiative: number;
     public ac: number;
     public backstory:string;
+    public traits:string;
+    public languages:string;
+
 
     public constructor() {
-
         this.setRace();
         this.stats = {
             STR: 0,
@@ -70,7 +72,7 @@ class DnDCharacter {
                 mod += this.calculateProfBonus();
             }
             $(`#${name}`).val(mod);
-            skillz.push({skill: `${name}`, prof: mod, ability_score: stat})
+            skillz.push({skill: `${name}`, prof: mod, ability_score: stat, checked})
 
         });
         this.skills = skillz;
@@ -82,12 +84,26 @@ class DnDCharacter {
 
     public setRace() {
 
-        this.race = races.find(x => x.name === $("#race").val());
+        let race = races.find(x => x.name === $("#race").val());
+        this.race = race;
+
+        //races.forEach(x => x.name === )
         $("#speed").val(this.race.speed);
         loadSubRaces();
         this.setSubRace();
 
 
+    }
+
+    public setRaceTraits()
+    {
+        let race = races.find(x => x.name === $("#race").val());
+        let traits = "";
+        console.log(race.traits);
+        race.traits.forEach(x =>  traits += x.name+ "\n");
+        console.log(traits);
+        this.race.traits = traits;
+        this.race.languages = race.language_desc;
     }
 
     public setSubRace() {
@@ -111,6 +127,7 @@ class DnDCharacter {
 
     public setClass() {
         this.class = classes.find(x => x.name === $("#class").val());
+        this.features
         this.setHitPoints();
 
     }

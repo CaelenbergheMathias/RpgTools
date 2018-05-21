@@ -44,7 +44,7 @@ class DnDCharacter {
                 mod += this.calculateProfBonus();
             }
             $(`#${name}`).val(mod);
-            skillz.push({ skill: `${name}`, prof: mod, ability_score: stat });
+            skillz.push({ skill: `${name}`, prof: mod, ability_score: stat, checked });
         });
         this.skills = skillz;
     }
@@ -52,10 +52,20 @@ class DnDCharacter {
         return Math.floor((this.level + 7) / 4);
     }
     setRace() {
-        this.race = races.find(x => x.name === $("#race").val());
+        let race = races.find(x => x.name === $("#race").val());
+        this.race = race;
         $("#speed").val(this.race.speed);
         loadSubRaces();
         this.setSubRace();
+    }
+    setRaceTraits() {
+        let race = races.find(x => x.name === $("#race").val());
+        let traits = "";
+        console.log(race.traits);
+        race.traits.forEach(x => traits += x.name + "\n");
+        console.log(traits);
+        this.race.traits = traits;
+        this.race.languages = race.language_desc;
     }
     setSubRace() {
         let subrace = subRaces.find(x => x.name === $("#subrace").val());
@@ -71,6 +81,7 @@ class DnDCharacter {
     }
     setClass() {
         this.class = classes.find(x => x.name === $("#class").val());
+        this.features;
         this.setHitPoints();
     }
     setSubClass() {
