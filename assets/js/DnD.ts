@@ -11,7 +11,6 @@ function removeSpaces(string: string) {
     console.log(typeof string)
     let newstring: string[] = string.split(" ");
 
-    //console.log(newstring);
     return newstring.join("");
 
 }
@@ -90,7 +89,7 @@ function setCharacter(tofindchar:string)
             char.class = otherchar.class;
             char.subclass = otherchar.subclass;
             char.skills = otherchar.skills;
-            char.alignment=otherchar.alignment;
+            char.alignment = otherchar.alignment;
             char.hp = otherchar.hp;
             char.speed = otherchar.speed;
             char.initiative = otherchar.initiative;
