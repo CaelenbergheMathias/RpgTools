@@ -58,6 +58,22 @@ input[type="number"] {
   max-width: 2rem;
   margin-right: 0.3rem; }
 
+input[type="submit"], #delete {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.3rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  border-radius: 0.8rem;
+  -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -ms-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in; }
+
+input[type="submit"]:hover, #delete:hover {
+  background-color: #d58512; }
+
 h2 {
   margin-bottom: 0.4rem; }
 

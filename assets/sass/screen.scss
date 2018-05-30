@@ -1,6 +1,7 @@
 $headerBackground: #3b609b;
 $backgroundwrapper: rgba(25, 25, 25, 0.75);
 $backgroundcollertranistion: background-color 0.5s ease-in;
+$transcolor: #d58512;
 
 form {
   fieldset {
@@ -84,6 +85,26 @@ input[type="number"] {
   margin-right: 0.3rem;
 }
 
+input[type="submit"], #delete
+{
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.3rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  border-radius: 0.8rem;
+  -webkit-transition: $backgroundcollertranistion;
+  -moz-transition: $backgroundcollertranistion;
+  -ms-transition: $backgroundcollertranistion;
+  -o-transition: $backgroundcollertranistion;
+  transition: $backgroundcollertranistion;
+}
+
+input[type="submit"]:hover, #delete:hover
+{
+  background-color: $transcolor;
+}
+
 h2 {
   margin-bottom: 0.4rem;
 }
@@ -114,7 +135,7 @@ nav {
   }
 
   a:hover {
-    background-color: #d58512;
+    background-color: $transcolor;
   }
 }
 

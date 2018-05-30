@@ -2,6 +2,7 @@ class DnDCharacter {
     constructor() {
         this.hp = [];
         this.setRace();
+        this.setRaceTraits();
         this.stats = {
             STR: 0,
             DEX: 0,
@@ -18,6 +19,12 @@ class DnDCharacter {
         this.setSkills();
         this.initiative = this.calculatMod(this.stats["DEX"]);
         $("#initiative").val(this.initiative);
+    }
+    setGender() {
+        this.gender = $("#gender").val();
+    }
+    fillGender() {
+        $("#gender").val(this.gender);
     }
     copyChar(otherchar) {
         this.stats = otherchar.stats;

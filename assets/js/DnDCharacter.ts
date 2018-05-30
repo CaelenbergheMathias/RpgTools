@@ -1,5 +1,6 @@
 class DnDCharacter {
     public name: string;
+    public gender:string;
     public level: number;
     public stats: any;
     public race: any;
@@ -23,6 +24,7 @@ class DnDCharacter {
 
     public constructor() {
         this.setRace();
+        this.setRaceTraits();
         this.stats = {
             STR: 0,
             DEX: 0,
@@ -40,6 +42,17 @@ class DnDCharacter {
         this.initiative = this.calculatMod(this.stats["DEX"]);
         $("#initiative").val(this.initiative);
 
+
+    }
+
+    public setGender()
+    {
+        this.gender = $("#gender").val();
+    }
+
+    public fillGender()
+    {
+        $("#gender").val(this.gender);
     }
 
     public copyChar(otherchar: DnDCharacter) {

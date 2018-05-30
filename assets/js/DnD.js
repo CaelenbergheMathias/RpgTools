@@ -121,6 +121,7 @@ function setBackstoryTraitsFeatures() {
     char.setTraits();
     char.setFeatures();
     char.setCharacterDescription();
+    char.setGender();
 }
 function fillBackstoryTraitsFeatures() {
     char.fillBackstory();
@@ -133,6 +134,7 @@ function fillBackstoryTraitsFeatures() {
     char.fillTraits();
     char.fillAlignement();
     char.fillCharacterDescription();
+    char.fillGender();
 }
 function fillInNumbers() {
     char.fillLevel();
@@ -217,6 +219,20 @@ function setCharacter(tofindchar) {
         console.log(err);
     });
 }
+function deleteCharacter() {
+    let toDeleteChar = $("#madechars").val();
+    if (confirm(`Are you sure you want to delete ${toDeleteChar}?`)) {
+        localforage.getItem("dndchars").then(function (chars) {
+            let char = chars.find(function (dndchar) {
+                return dndchar.name === toDeleteChar;
+            });
+            chars.splice(chars.indexOf(char), 1);
+            localforage.setItem("dndchars", chars);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+}
 function loadCharacter() {
     let tofindchar = $("#madechars").val();
     if (tofindchar !== "nc") {
@@ -239,7 +255,8 @@ $(document).ready(function () {
     $("input[type=number]").on("change", changeStats);
     $("fieldset>a").on("click", hideReveal);
     $("#alignment").on('change', changeAlignment);
-    $('textarea').on("change", setBackstoryTraitsFeatures);
+    $('textarea, #gender').on("change", setBackstoryTraitsFeatures);
     $("input[type=submit]").on("click", addToLocalForage);
+    $("button").on("click", deleteCharacter);
 });
 //# sourceMappingURL=DnD.js.map

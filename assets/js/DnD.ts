@@ -55,8 +55,7 @@ function loadSubClasses() {
     $("#subclass").html(options);
 }
 
-function loadSkills()
-{
+function loadSkills() {
     let string = "";
     skills.forEach(skill => {
         let name = removeSpaces(skill.name);
@@ -73,13 +72,12 @@ function loadSkills()
     $("#skills").html(string)
 }
 
-function changeStats()
-{
-    for(let k in char.stats){
-        let value:number = parseInt($(`#${k}`).val());
+function changeStats() {
+    for (let k in char.stats) {
+        let value: number = parseInt($(`#${k}`).val());
         console.log(k);
         console.log(value);
-        char.changeStats(k,value);
+        char.changeStats(k, value);
     }
     char.setSkills();
     char.setAc();
@@ -89,14 +87,11 @@ function changeStats()
     char.setSpeed();
 }
 
-function setStats()
-{
-    for(let k in char.stats)
-    {
+function setStats() {
+    for (let k in char.stats) {
 
         char.applyStats(k);
     }
-
 
 
 }
@@ -144,8 +139,7 @@ function applySubClassChanges() {
     //console.log(char);
 }
 
-function applyAll()
-{
+function applyAll() {
     //char.setHitPoints();
     char.setClass();
     char.setSubClass();
@@ -155,18 +149,15 @@ function applyAll()
     char.setSkills();
 }
 
-function applyCheck()
-{
+function applyCheck() {
     char.setSkills();
 }
 
-function changeAlignment()
-{
+function changeAlignment() {
     char.setAlignment();
 }
 
-function setBackstoryTraitsFeatures()
-{
+function setBackstoryTraitsFeatures() {
     char.setBackstory();
     char.setIdeals();
     char.setBonds();
@@ -176,10 +167,10 @@ function setBackstoryTraitsFeatures()
     char.setTraits();
     char.setFeatures();
     char.setCharacterDescription();
+    char.setGender();
 }
 
-function fillBackstoryTraitsFeatures()
-{
+function fillBackstoryTraitsFeatures() {
     char.fillBackstory();
     char.fillBonds();
     char.fillFeatures();
@@ -190,10 +181,10 @@ function fillBackstoryTraitsFeatures()
     char.fillTraits();
     char.fillAlignement();
     char.fillCharacterDescription();
+    char.fillGender();
 }
 
-function fillInNumbers()
-{
+function fillInNumbers() {
     char.fillLevel();
     char.fillAc();
     char.fillMaxHP();
@@ -202,8 +193,7 @@ function fillInNumbers()
     char.fillSpeed();
 }
 
-function hideReveal(e:any)
-{
+function hideReveal(e: any) {
     e.preventDefault();
 
     $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(500);
@@ -211,15 +201,13 @@ function hideReveal(e:any)
 
 }
 
-function setChecks()
-{
+function setChecks() {
     console.log(char.skills);
     char.skills.forEach(function (skill) {
         console.log(skill);
-        if(skill.checked)
-        {
+        if (skill.checked) {
 
-            $(`#${skill.skill}checkbox`).prop("checked",true);
+            $(`#${skill.skill}checkbox`).prop("checked", true);
         }
     });
 
@@ -227,63 +215,57 @@ function setChecks()
 
 //LOCALFORAGE
 
-function addToLocalForage(e:Event)
-{
+function addToLocalForage(e: Event) {
     e.preventDefault();
-    let name:string = $("#name").val();
+    let name: string = $("#name").val();
     //console.log(name);
     char.setName();
     char.setBackstory();
     char.setAlignment();
-    localforage.getItem("dndchars").then(function (value:DnDCharacter[]) {
-        if(value===null)
-        {
+    localforage.getItem("dndchars").then(function (value: DnDCharacter[]) {
+        if (value === null) {
 
             let array = [char];
-            localforage.setItem("dndchars",array);
+            localforage.setItem("dndchars", array);
         }
-        else{
+        else {
             let filtered = value.filter(function (x) {
                 return x.name === name;
             });
             console.log(filtered.length);
             console.log(char);
-            if(filtered.length<=0)
-            {
+            if (filtered.length <= 0) {
 
                 value.push(char);
             }
-            else if(confirm("A Character With this name already exists do you want to overwrite it?"))
-            {
+            else if (confirm("A Character With this name already exists do you want to overwrite it?")) {
                 let index = value.indexOf(filtered[0]);
 
                 value[index] = char;
             }
-            localforage.setItem("dndchars",value);
+            localforage.setItem("dndchars", value);
 
         }
     }).then(getCharacterOptions);
 
 }
 
-function getCharacterOptions()
-{
-    localforage.getItem("dndchars").then(function (value:DnDCharacter[]) {
+function getCharacterOptions() {
+    localforage.getItem("dndchars").then(function (value: DnDCharacter[]) {
         $("#madechars").empty();
         $("#madechars").append("<option value=\"nc\">New Character</option>");
-        if(value !== null) {
+        if (value !== null) {
             value.forEach(function (char) {
                 $("#madechars").append(`<option value="${char.name}">${char.name}</option>`);
             })
         }
 
-    }).catch(function (err:object) {
+    }).catch(function (err: object) {
         console.log(err);
     });
 }
 
-function setCharacter(tofindchar:string)
-{
+function setCharacter(tofindchar: string) {
 
 
     localforage.getItem("dndchars").then(function (value: DnDCharacter[]) {
@@ -305,18 +287,36 @@ function setCharacter(tofindchar:string)
         console.log(char);
 
 
-
-
-    }).catch(function (err:object) {
+    }).catch(function (err: object) {
         console.log(err);
     });
 
 }
 
-function loadCharacter()
-{
+function deleteCharacter() {
+    let toDeleteChar = $("#madechars").val();
+    if(confirm(`Are you sure you want to delete ${toDeleteChar}?`))
+    {
+
+        localforage.getItem("dndchars").then(function (chars: DnDCharacter[]) {
+            let char = chars.find(function (dndchar) {
+                return dndchar.name === toDeleteChar;
+            });
+
+            chars.splice(chars.indexOf(char), 1);
+            localforage.setItem("dndchars", chars);
+
+        }).catch(function (err: object) {
+
+            console.log(err)
+        });
+    }
+}
+
+
+function loadCharacter() {
     let tofindchar = $("#madechars").val();
-    if(tofindchar!=="nc") {
+    if (tofindchar !== "nc") {
         setCharacter(tofindchar);
 
 
@@ -335,13 +335,14 @@ $(document).ready(function () {
     $("#level").on("change", applyLevelChange);
     $("#class").on("change", applyClassChanges);
     $("#subclass").on("change", applySubClassChanges);
-    $("input[type=checkbox]").on("change",applyCheck);
-    $("#madechars").on("change",loadCharacter);
-    $("input[type=number]").on("change",changeStats);
-    $("fieldset>a").on("click",hideReveal);
-    $("#alignment").on('change',changeAlignment);
-    $('textarea').on("change", setBackstoryTraitsFeatures);
-    $("input[type=submit]").on("click",addToLocalForage);
+    $("input[type=checkbox]").on("change", applyCheck);
+    $("#madechars").on("change", loadCharacter);
+    $("input[type=number]").on("change", changeStats);
+    $("fieldset>a").on("click", hideReveal);
+    $("#alignment").on('change', changeAlignment);
+    $('textarea, #gender').on("change", setBackstoryTraitsFeatures);
+    $("input[type=submit]").on("click", addToLocalForage);
+    $("button").on("click", deleteCharacter);
 
 
 
