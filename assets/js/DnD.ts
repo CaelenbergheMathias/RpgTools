@@ -306,7 +306,7 @@ function deleteCharacter() {
             chars.splice(chars.indexOf(char), 1);
             localforage.setItem("dndchars", chars);
 
-        }).catch(function (err: object) {
+        }).then(getCharacterOptions()).catch(function (err: object) {
 
             console.log(err)
         });
