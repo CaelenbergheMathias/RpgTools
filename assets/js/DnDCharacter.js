@@ -47,6 +47,7 @@ class DnDCharacter {
         this.ptraits = otherchar.ptraits;
         this.cdescription = otherchar.cdescription;
         this.ideals = otherchar.ideals;
+        this.gender = otherchar.gender;
     }
     setAlignment() {
         this.alignment = $("#alignment").val();
