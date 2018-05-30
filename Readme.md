@@ -1,4 +1,7 @@
 <h1>Readme</h1>
+
+<p>the dropdown menu's are not visible in the screencast for some reason but they are there.</p>
+
 <p>As you may know I made a Character Generator for rpgs, it was planned to make them for dnd, grups and call of cthulhu.
 but I only managed to make a basic dnd character generator.</p>
 <p>The repo is located <a href="https://github.com/CaelenbergheMathias/RpgTools.git">here</a>. And the app is hosted via
