@@ -231,7 +231,7 @@ function deleteCharacter() {
             });
             chars.splice(chars.indexOf(char), 1);
             localforage.setItem("dndchars", chars);
-        }).then(getCharacterOptions()).catch(function (err) {
+        }).then(getCharacterOptions).catch(function (err) {
             console.log(err);
         });
     }
