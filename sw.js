@@ -1,6 +1,6 @@
 var CACHE_NAME = 'cached_urls';
 var urlsToCache = [
-    '/'
+    'index.html'
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME)
