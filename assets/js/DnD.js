@@ -58,6 +58,7 @@ function changeStats() {
     char.changeMaxHealth(parseInt($("#max_hp").val()));
     char.changeCurrentHealth(parseInt($("#cur_hp").val()));
     char.setInitiative();
+    char.setSpeed();
 }
 function setStats() {
     for (let k in char.stats) {
@@ -119,6 +120,7 @@ function setBackstoryTraitsFeatures() {
     char.setPersonalityTraits();
     char.setTraits();
     char.setFeatures();
+    char.setCharacterDescription();
 }
 function fillBackstoryTraitsFeatures() {
     char.fillBackstory();
@@ -130,6 +132,15 @@ function fillBackstoryTraitsFeatures() {
     char.fillPersonalityTraits();
     char.fillTraits();
     char.fillAlignement();
+    char.fillCharacterDescription();
+}
+function fillInNumbers() {
+    char.fillLevel();
+    char.fillAc();
+    char.fillMaxHP();
+    char.fillCurHP();
+    char.fillInitiative();
+    char.fillSpeed();
 }
 function hideReveal(e) {
     e.preventDefault();
@@ -193,12 +204,14 @@ function setCharacter(tofindchar) {
         char.copyChar(otherchar);
         setStats();
         char.fillClass();
+        loadSubClasses();
         char.fillSubclass();
         char.fillRace();
         char.fillSubrace();
         setChecks();
         char.setSkills();
         fillBackstoryTraitsFeatures();
+        fillInNumbers();
         console.log(char);
     }).catch(function (err) {
         console.log(err);

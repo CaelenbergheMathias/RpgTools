@@ -86,6 +86,7 @@ function changeStats()
     char.changeMaxHealth(parseInt($("#max_hp").val()));
     char.changeCurrentHealth(parseInt($("#cur_hp").val()));
     char.setInitiative();
+    char.setSpeed();
 }
 
 function setStats()
@@ -174,6 +175,7 @@ function setBackstoryTraitsFeatures()
     char.setPersonalityTraits();
     char.setTraits();
     char.setFeatures();
+    char.setCharacterDescription();
 }
 
 function fillBackstoryTraitsFeatures()
@@ -187,6 +189,17 @@ function fillBackstoryTraitsFeatures()
     char.fillPersonalityTraits();
     char.fillTraits();
     char.fillAlignement();
+    char.fillCharacterDescription();
+}
+
+function fillInNumbers()
+{
+    char.fillLevel();
+    char.fillAc();
+    char.fillMaxHP();
+    char.fillCurHP();
+    char.fillInitiative();
+    char.fillSpeed();
 }
 
 function hideReveal(e:any)
@@ -281,13 +294,14 @@ function setCharacter(tofindchar:string)
 
         setStats();
         char.fillClass();
+        loadSubClasses();
         char.fillSubclass();
         char.fillRace();
         char.fillSubrace();
         setChecks();
         char.setSkills();
         fillBackstoryTraitsFeatures();
-
+        fillInNumbers();
         console.log(char);
 
 

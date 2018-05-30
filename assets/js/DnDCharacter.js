@@ -34,6 +34,12 @@ class DnDCharacter {
         this.initiative = otherchar.initiative;
         this.ac = otherchar.ac;
         this.backstory = otherchar.backstory;
+        this.bonds = otherchar.bonds;
+        this.flaws = otherchar.flaws;
+        this.features = otherchar.features;
+        this.ptraits = otherchar.ptraits;
+        this.cdescription = otherchar.cdescription;
+        this.ideals = otherchar.ideals;
     }
     setAlignment() {
         this.alignment = $("#alignment").val();
@@ -98,7 +104,12 @@ class DnDCharacter {
         }
     }
     fillSubrace() {
-        $("#subrace").val(this.subrace.name);
+        if (this.subrace !== "none") {
+            $("#subrace").val(this.subrace.name);
+        }
+        else {
+            $("#subrace").val("none");
+        }
     }
     changeStats(stat, value) {
         this.stats[stat] = value;
@@ -116,10 +127,18 @@ class DnDCharacter {
         this.subclass = subclass === undefined ? "none" : subclass;
     }
     fillSubclass() {
-        $("#subclass").val(this.subclass.name);
+        if (this.subclass !== "none") {
+            $("#subclass").val(this.subclass.name);
+        }
+        else {
+            $("#subclass").val("none");
+        }
     }
     setAc() {
         this.ac = parseInt($("#ac").val());
+    }
+    fillAc() {
+        $("#ac").val(this.ac);
     }
     setStartingAC() {
         let ac = 10 + this.calculatMod(this.stats["DEX"]);
@@ -142,7 +161,16 @@ class DnDCharacter {
         return numbers[0] + numbers[1] + numbers[2];
     }
     setInitiative() {
-        this.initiative = parseInt($("#initiative").val());
+        this.initiative = this.calculatMod(this.stats["DEX"]);
+    }
+    fillInitiative() {
+        $("#initiative").val(this.calculatMod(this.stats["DEX"]));
+    }
+    setSpeed() {
+        this.speed = parseInt($("#speed").val());
+    }
+    fillSpeed() {
+        $("#speed").val(this.speed);
     }
     applyStats(x) {
         let value = this.stats[x];
@@ -179,8 +207,18 @@ class DnDCharacter {
         $("#max_hp").val(health);
         $("#cur_hp").val(health);
     }
+    fillMaxHP() {
+        $("#max_hp").val(this.hp[0]);
+    }
+    fillCurHP() {
+        $("#cur_hp").val(this.hp[1]);
+    }
     setLevel() {
         this.level = parseInt($("#level").val());
+        $("#profbonus").val(this.calculateProfBonus());
+    }
+    fillLevel() {
+        $("#level").val(this.level);
         $("#profbonus").val(this.calculateProfBonus());
     }
     rollStats() {
@@ -209,10 +247,13 @@ class DnDCharacter {
         $("#flaws").val(this.flaws);
     }
     setIdeals() {
+        console.log($("#ideals").val());
         this.ideals = $("#ideals").val();
+        console.log(this.ideals);
     }
     fillIdeals() {
         $("#ideals").val(this.ideals);
+        console.log(this.ideals);
     }
     setFeatures() {
         this.features = $("#cfeatures").val();
@@ -237,6 +278,12 @@ class DnDCharacter {
     }
     fillTraits() {
         $("#racetraits").val(this.race.traits);
+    }
+    setCharacterDescription() {
+        this.cdescription = $("#description").val();
+    }
+    fillCharacterDescription() {
+        $("#description").val(this.cdescription);
     }
 }
 //# sourceMappingURL=DnDCharacter.js.map
