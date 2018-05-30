@@ -155,6 +155,9 @@ function setChecks() {
         if (skill.checked) {
             $(`#${skill.skill}checkbox`).prop("checked", true);
         }
+        else {
+            $(`#${skill.skill}checkbox`).prop("checked", false);
+        }
     });
 }
 function addToLocalForage(e) {

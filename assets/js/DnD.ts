@@ -209,6 +209,10 @@ function setChecks() {
 
             $(`#${skill.skill}checkbox`).prop("checked", true);
         }
+        else
+        {
+            $(`#${skill.skill}checkbox`).prop("checked", false);
+        }
     });
 
 }
