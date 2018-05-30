@@ -342,7 +342,7 @@ $(document).ready(function () {
     $("#alignment").on('change', changeAlignment);
     $('textarea, #gender').on("change", setBackstoryTraitsFeatures);
     $("input[type=submit]").on("click", addToLocalForage);
-    $("button").on("click", deleteCharacter);
+    $("#delete").on("click", deleteCharacter);
 
 
 
