@@ -46,44 +46,6 @@ function loadSkills() {
     });
     $("#skills").html(string);
 }
-function setCharacter(tofindchar) {
-    localforage.getItem("dndchars").then(function (value) {
-        let otherchar = value.find(function (dndchar) {
-            return dndchar.name === tofindchar;
-        });
-        char.stats = otherchar.stats;
-        char.name = otherchar.name;
-        char.level = otherchar.level;
-        char.race = otherchar.race;
-        char.subrace = otherchar.subrace;
-        char.class = otherchar.class;
-        char.subclass = otherchar.subclass;
-        char.skills = otherchar.skills;
-        char.alignment = otherchar.alignment;
-        char.hp = otherchar.hp;
-        char.speed = otherchar.speed;
-        char.initiative = otherchar.initiative;
-        char.ac = otherchar.ac;
-        char.backstory = otherchar.backstory;
-        setStats();
-        char.setClass();
-        char.setSubClass();
-        char.setRace();
-        char.setSubRace();
-        setChecks();
-        char.setSkills();
-        console.log(char);
-    }).catch(function (err) {
-        console.log(err);
-    });
-}
-function loadCharacter() {
-    let tofindchar = $("#madechars").val();
-    if (tofindchar !== "nc") {
-        setCharacter(tofindchar);
-        document.getElementById("name").value = tofindchar;
-    }
-}
 function changeStats() {
     for (let k in char.stats) {
         let value = parseInt($(`#${k}`).val());
@@ -101,19 +63,6 @@ function setStats() {
     for (let k in char.stats) {
         char.applyStats(k);
     }
-}
-function getCharacterOptions() {
-    localforage.getItem("dndchars").then(function (value) {
-        $("#madechars").empty();
-        $("#madechars").append("<option value=\"nc\">New Character</option>");
-        if (value !== null) {
-            value.forEach(function (char) {
-                $("#madechars").append(`<option value="${char.name}">${char.name}</option>`);
-            });
-        }
-    }).catch(function (err) {
-        console.log(err);
-    });
 }
 function loadData() {
     loadClasses();
@@ -161,6 +110,27 @@ function applyCheck() {
 function changeAlignment() {
     char.setAlignment();
 }
+function setBackstoryTraitsFeatures() {
+    char.setBackstory();
+    char.setIdeals();
+    char.setBonds();
+    char.setFlaws();
+    char.setLanguages();
+    char.setPersonalityTraits();
+    char.setTraits();
+    char.setFeatures();
+}
+function fillBackstoryTraitsFeatures() {
+    char.fillBackstory();
+    char.fillBonds();
+    char.fillFeatures();
+    char.fillFlaws();
+    char.fillIdeals();
+    char.fillLanguages();
+    char.fillPersonalityTraits();
+    char.fillTraits();
+    char.fillAlignement();
+}
 function hideReveal(e) {
     e.preventDefault();
     $(`#${removeSpaces(this.text.toLocaleLowerCase())}`).toggle(500);
@@ -202,6 +172,45 @@ function addToLocalForage(e) {
         }
     }).then(getCharacterOptions);
 }
+function getCharacterOptions() {
+    localforage.getItem("dndchars").then(function (value) {
+        $("#madechars").empty();
+        $("#madechars").append("<option value=\"nc\">New Character</option>");
+        if (value !== null) {
+            value.forEach(function (char) {
+                $("#madechars").append(`<option value="${char.name}">${char.name}</option>`);
+            });
+        }
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
+function setCharacter(tofindchar) {
+    localforage.getItem("dndchars").then(function (value) {
+        let otherchar = value.find(function (dndchar) {
+            return dndchar.name === tofindchar;
+        });
+        char.copyChar(otherchar);
+        setStats();
+        char.fillClass();
+        char.fillSubclass();
+        char.fillRace();
+        char.fillSubrace();
+        setChecks();
+        char.setSkills();
+        fillBackstoryTraitsFeatures();
+        console.log(char);
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
+function loadCharacter() {
+    let tofindchar = $("#madechars").val();
+    if (tofindchar !== "nc") {
+        setCharacter(tofindchar);
+        document.getElementById("name").value = tofindchar;
+    }
+}
 $(document).ready(function () {
     loadData();
     char = new DnDCharacter();
@@ -216,6 +225,8 @@ $(document).ready(function () {
     $("#madechars").on("change", loadCharacter);
     $("input[type=number]").on("change", changeStats);
     $("fieldset>a").on("click", hideReveal);
+    $("#alignment").on('change', changeAlignment);
+    $('textarea').on("change", setBackstoryTraitsFeatures);
     $("input[type=submit]").on("click", addToLocalForage);
 });
 //# sourceMappingURL=DnD.js.map

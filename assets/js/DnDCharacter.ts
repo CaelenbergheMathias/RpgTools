@@ -13,8 +13,12 @@ class DnDCharacter {
     public initiative: number;
     public ac: number;
     public backstory:string;
-    public traits:string;
-    public languages:string;
+    public ptraits:string;
+    public bonds:string;
+    public ideals:string;
+    public flaws:string;
+    public features:string;
+
 
 
     public constructor() {
@@ -38,12 +42,30 @@ class DnDCharacter {
 
     }
 
+    public copyChar(otherchar:DnDCharacter)
+    {
+        this.stats = otherchar.stats;
+        this.name = otherchar.name;
+        this.level =otherchar.level;
+        this.race = otherchar.race;
+        this.subrace = otherchar.subrace;
+        this.class = otherchar.class;
+        this.subclass = otherchar.subclass;
+        this.skills = otherchar.skills;
+        this.alignment = otherchar.alignment;
+        this.hp = otherchar.hp;
+        this.speed = otherchar.speed;
+        this.initiative = otherchar.initiative;
+        this.ac = otherchar.ac;
+        this.backstory = otherchar.backstory;
+    }
+
     public setAlignment()
     {
         this.alignment = $("#alignment").val();
     }
 
-    public changeAlignement()
+    public fillAlignement()
     {
         $("#alignment").val(this.alignment);
     }
@@ -84,8 +106,8 @@ class DnDCharacter {
 
     public setRace() {
 
-        let race = races.find(x => x.name === $("#race").val());
-        this.race = race;
+
+        this.race = races.find(x => x.name === $("#race").val());
 
         //races.forEach(x => x.name === )
         $("#speed").val(this.race.speed);
@@ -93,6 +115,12 @@ class DnDCharacter {
         this.setSubRace();
 
 
+    }
+
+    public fillRace()
+    {
+        $("#race").val(this.race.name);
+        loadSubRaces();
     }
 
     public setRaceTraits()
@@ -103,7 +131,11 @@ class DnDCharacter {
         race.traits.forEach(x =>  traits += x.name+ "\n");
         console.log(traits);
         this.race.traits = traits;
+
         this.race.languages = race.language_desc;
+        console.log()
+        this.fillTraits();
+        this.fillLanguages();
     }
 
     public setSubRace() {
@@ -120,6 +152,11 @@ class DnDCharacter {
 
     }
 
+    public fillSubrace()
+    {
+        $("#subrace").val(this.subrace.name);
+    }
+
     public changeStats(stat: string, value: number) {
         this.stats[stat] = value;
         this.applyStats(stat);
@@ -127,15 +164,24 @@ class DnDCharacter {
 
     public setClass() {
         this.class = classes.find(x => x.name === $("#class").val());
-        this.features
+
         this.setHitPoints();
 
+    }
+
+    public fillClass()
+    {
+        $("#class").val(this.class.name);
     }
 
     public setSubClass() {
         let subclass = subclasses.find(x => x.name === $("#subclass").val());
 
         this.subclass = subclass === undefined ? "none" : subclass;
+    }
+
+    public fillSubclass(){
+        $("#subclass").val(this.subclass.name);
     }
 
     public setAc()
@@ -245,6 +291,81 @@ class DnDCharacter {
     public setBackstory()
     {
         this.backstory = $("#backstory").val();
+    }
+
+    public fillBackstory()
+    {
+        $("#backstory").val(this.backstory);
+    }
+
+    public setBonds()
+    {
+        this.bonds = $("#bonds").val();
+    }
+
+    public fillBonds()
+    {
+        $("#bonds").val(this.bonds);
+    }
+
+    public setFlaws()
+    {
+        this.flaws = $("#flaws").val();
+    }
+
+    public fillFlaws()
+    {
+        $("#flaws").val(this.flaws);
+    }
+
+    public setIdeals()
+    {
+        this.ideals = $("#ideals").val();
+    }
+
+    public fillIdeals()
+    {
+        $("#ideals").val(this.ideals);
+    }
+
+    public setFeatures()
+    {
+        this.features = $("#cfeatures").val();
+    }
+
+    public fillFeatures()
+    {
+        $("#cfeatures").val(this.features);
+    }
+
+    public setLanguages()
+    {
+        this.race.languages = $("#languages").val();
+    }
+
+    public fillLanguages()
+    {
+        $("#languages").val(this.race.languages);
+    }
+
+    public setPersonalityTraits()
+    {
+        this.ptraits = $("#personalitytraits").val();
+    }
+
+    public fillPersonalityTraits()
+    {
+        $("#personalitytraits").val(this.ptraits);
+    }
+
+    public setTraits()
+    {
+        this.race.traits = $("#racetraits").val();
+    }
+
+    public fillTraits()
+    {
+        $("#racetraits").val(this.race.traits);
     }
 
 }

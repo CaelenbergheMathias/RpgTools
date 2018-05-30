@@ -19,10 +19,26 @@ class DnDCharacter {
         this.initiative = this.calculatMod(this.stats["DEX"]);
         $("#initiative").val(this.initiative);
     }
+    copyChar(otherchar) {
+        this.stats = otherchar.stats;
+        this.name = otherchar.name;
+        this.level = otherchar.level;
+        this.race = otherchar.race;
+        this.subrace = otherchar.subrace;
+        this.class = otherchar.class;
+        this.subclass = otherchar.subclass;
+        this.skills = otherchar.skills;
+        this.alignment = otherchar.alignment;
+        this.hp = otherchar.hp;
+        this.speed = otherchar.speed;
+        this.initiative = otherchar.initiative;
+        this.ac = otherchar.ac;
+        this.backstory = otherchar.backstory;
+    }
     setAlignment() {
         this.alignment = $("#alignment").val();
     }
-    changeAlignement() {
+    fillAlignement() {
         $("#alignment").val(this.alignment);
     }
     setName() {
@@ -52,11 +68,14 @@ class DnDCharacter {
         return Math.floor((this.level + 7) / 4);
     }
     setRace() {
-        let race = races.find(x => x.name === $("#race").val());
-        this.race = race;
+        this.race = races.find(x => x.name === $("#race").val());
         $("#speed").val(this.race.speed);
         loadSubRaces();
         this.setSubRace();
+    }
+    fillRace() {
+        $("#race").val(this.race.name);
+        loadSubRaces();
     }
     setRaceTraits() {
         let race = races.find(x => x.name === $("#race").val());
@@ -66,6 +85,9 @@ class DnDCharacter {
         console.log(traits);
         this.race.traits = traits;
         this.race.languages = race.language_desc;
+        console.log();
+        this.fillTraits();
+        this.fillLanguages();
     }
     setSubRace() {
         let subrace = subRaces.find(x => x.name === $("#subrace").val());
@@ -75,18 +97,26 @@ class DnDCharacter {
             this.applyStats(x);
         }
     }
+    fillSubrace() {
+        $("#subrace").val(this.subrace.name);
+    }
     changeStats(stat, value) {
         this.stats[stat] = value;
         this.applyStats(stat);
     }
     setClass() {
         this.class = classes.find(x => x.name === $("#class").val());
-        this.features;
         this.setHitPoints();
+    }
+    fillClass() {
+        $("#class").val(this.class.name);
     }
     setSubClass() {
         let subclass = subclasses.find(x => x.name === $("#subclass").val());
         this.subclass = subclass === undefined ? "none" : subclass;
+    }
+    fillSubclass() {
+        $("#subclass").val(this.subclass.name);
     }
     setAc() {
         this.ac = parseInt($("#ac").val());
@@ -162,6 +192,51 @@ class DnDCharacter {
     }
     setBackstory() {
         this.backstory = $("#backstory").val();
+    }
+    fillBackstory() {
+        $("#backstory").val(this.backstory);
+    }
+    setBonds() {
+        this.bonds = $("#bonds").val();
+    }
+    fillBonds() {
+        $("#bonds").val(this.bonds);
+    }
+    setFlaws() {
+        this.flaws = $("#flaws").val();
+    }
+    fillFlaws() {
+        $("#flaws").val(this.flaws);
+    }
+    setIdeals() {
+        this.ideals = $("#ideals").val();
+    }
+    fillIdeals() {
+        $("#ideals").val(this.ideals);
+    }
+    setFeatures() {
+        this.features = $("#cfeatures").val();
+    }
+    fillFeatures() {
+        $("#cfeatures").val(this.features);
+    }
+    setLanguages() {
+        this.race.languages = $("#languages").val();
+    }
+    fillLanguages() {
+        $("#languages").val(this.race.languages);
+    }
+    setPersonalityTraits() {
+        this.ptraits = $("#personalitytraits").val();
+    }
+    fillPersonalityTraits() {
+        $("#personalitytraits").val(this.ptraits);
+    }
+    setTraits() {
+        this.race.traits = $("#racetraits").val();
+    }
+    fillTraits() {
+        $("#racetraits").val(this.race.traits);
     }
 }
 //# sourceMappingURL=DnDCharacter.js.map
